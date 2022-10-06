@@ -1,0 +1,31 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+  <changeSet id="20220818-0954-add-table-commit" author="YaLynk" >
+    <createTable tableName="commit">
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="pk_commit_id_commit"/>
+      </column>
+      <column name="messenger" type="varchar(256)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_at" type="Date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="progress" type="float">
+        <constraints nullable="false"/>
+      </column>
+      <column name="key_results_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+
+</databaseChangeLog>

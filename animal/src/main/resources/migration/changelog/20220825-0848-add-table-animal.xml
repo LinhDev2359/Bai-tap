@@ -1,0 +1,34 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+  <changeSet id="20220825-0848-add-table-animal" author="YaLynk" >
+    <createTable tableName="animal">
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="pk_class_id_class"/>
+      </column>
+      <column name="name" type="varchar(100)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="date" type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="weight" type="float">
+        <constraints nullable="false"/>
+      </column>
+      <column name="place_to_live" type="varchar(200)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="country" type="varchar(200)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+
+</databaseChangeLog>

@@ -1,0 +1,19 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+  <include file="/changelog/20221004-2104-add-table-custom-filed-type.xml" relativeToChangelogFile="true" />
+  <include file="/changelog/20221004-2110-add-table-feedback-child-attributes .xml" relativeToChangelogFile="true" />
+  <include file="/changelog/20221004-2114-add-table-stage.xml" relativeToChangelogFile="true" />
+  <include file="/changelog/20221004-2116-add-table-department.xml" relativeToChangelogFile="true" />
+  <include file="/changelog/20221004-2118-add-table-pipeline.xml" relativeToChangelogFile="true" />
+  <include file="/changelog/20221004-2120-add-table-department-employee.xml" relativeToChangelogFile="true" />
+  <include file="/changelog/20221004-2122-add-table-feedback.xml" relativeToChangelogFile="true" />
+
+
+</databaseChangeLog>

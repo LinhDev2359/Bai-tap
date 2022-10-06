@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/OKRS/okrs-server-java" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/security" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/security - Copy" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/security-sonanh" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/security-sonanh/Spring_Security" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/security1" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/validator/Security" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/validator/Validate" vcs="Git" />
+  </component>
+</project>

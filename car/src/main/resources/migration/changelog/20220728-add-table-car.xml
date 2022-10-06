@@ -1,0 +1,33 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="20220728-add-table-car" author="LinhTG">
+        <createTable tableName="car">
+            <column name="id_Car" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_car_id"/>
+            </column>
+            <column name="name_Car" type="varchar(120)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="color_Car" type="varchar(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_Car" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price_Car" type="float">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

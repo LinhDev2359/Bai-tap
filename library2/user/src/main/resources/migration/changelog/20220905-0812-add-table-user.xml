@@ -1,0 +1,40 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+  <changeSet id="20220905-0812-add-table-user" author="YaLynk" >
+    <createTable tableName="user_profile">
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="pk_user_id_user"/>
+      </column>
+      <column name="email" type="varchar(100)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="password" type="varchar(20)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="firstname" type="varchar(20)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="lastname" type="varchar(20)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="number_phone" type="varchar(15)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="date_of_birth" type="Date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="address" type="varchar(256)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+
+</databaseChangeLog>

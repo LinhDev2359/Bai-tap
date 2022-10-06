@@ -1,0 +1,25 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="20220802-951-add-table-studentr" author="YaLynk" >
+        <createTable tableName="student">
+            <column name="id_student" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_class_id_class"/>
+            </column>
+            <column name="surname_and_cushion" type="varchar(150)"/>
+            <column name="name" type="varchar(20)"/>
+            <column name="date" type="int"/>
+            <column name="sex" type="varchar(20)"/>
+            <column name="place_of_birth" type="varchar(200)"/>
+            <column name="id_class" type="int"/>
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>

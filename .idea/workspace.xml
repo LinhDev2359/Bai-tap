@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f4d41c37-a386-452e-a7a6-ab36b8225c03" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/security - Copy/src/main/java/org/aibles/springjwt/dto/response/JwtResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/security - Copy/src/main/java/org/aibles/springjwt/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/security - Copy/src/main/java/org/aibles/springjwt/controllers/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/security - Copy/src/main/java/org/aibles/springjwt/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/security - Copy/src/main/java/org/aibles/springjwt/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/security - Copy/src/main/java/org/aibles/springjwt/payload/request/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/security - Copy/src/main/java/org/aibles/springjwt/dto/request/LoginRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/security - Copy/src/main/java/org/aibles/springjwt/payload/request/SignupRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/security - Copy/src/main/java/org/aibles/springjwt/dto/request/SignupRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/security - Copy/src/main/java/org/aibles/springjwt/payload/response/JwtResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/security - Copy/src/main/java/org/aibles/springjwt/payload/response/MessageResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/security - Copy/src/main/java/org/aibles/springjwt/dto/response/MessageResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/security - Copy/src/main/java/org/aibles/springjwt/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/security - Copy/src/main/java/org/aibles/springjwt/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/security - Copy/src/main/java/org/aibles/springjwt/security/services/UserDetailsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/security - Copy/src/main/java/org/aibles/springjwt/security/services/UserDetailsImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/security - Copy/src/main/java/org/aibles/springjwt/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/security - Copy/src/main/java/org/aibles/springjwt/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/security - Copy/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/security - Copy/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/OKRS/okrs-server-java" />
+  </component>
+  <component name="ProjectId" id="2CgjSnpf70IhvMTLREvmbYgk7dN" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f4d41c37-a386-452e-a7a6-ab36b8225c03" name="Default Changelist" comment="" />
+      <created>1659231124962</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1659231124962</updated>
+      <workItem from="1659231127456" duration="1000" />
+    </task>
+    <servers />
+  </component>
+</project>

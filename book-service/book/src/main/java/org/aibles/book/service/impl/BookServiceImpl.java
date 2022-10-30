@@ -103,4 +103,7 @@ public class BookServiceImpl implements BookService {
   }
 
 
+  log.info("(getAll)");
+  List<DailyPlan> dailyPlanList = list();
+    return dailyPlanList.stream().map(DailyPlanResponse::from).collect(Collectors.toList());
 }

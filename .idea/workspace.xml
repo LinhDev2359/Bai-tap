@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4d41c37-a386-452e-a7a6-ab36b8225c03" name="Default Changelist" comment="update nhẹ">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hinh-chu-nhat/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hinh-chu-nhat/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hinh-chu-nhat/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hinh-chu-nhat/.idea/google-java-format.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hinh-chu-nhat/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hinh-chu-nhat/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hinh-chu-nhat/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hinh-chu-nhat/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hinh-chu-nhat/Hinh-chu-nhat.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hinh-chu-nhat/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hinh-chu-nhat/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="f4d41c37-a386-452e-a7a6-ab36b8225c03" name="Default Changelist" comment="Create: problem draw a rectangle">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +54,7 @@
       <updated>1659231124962</updated>
       <workItem from="1659231127456" duration="1000" />
       <workItem from="1670678429196" duration="232000" />
-      <workItem from="1670679583470" duration="1003000" />
+      <workItem from="1670679583470" duration="1970000" />
     </task>
     <task id="LOCAL-00001" summary="Create: problem square drawing">
       <created>1670678512000</created>
@@ -86,7 +70,21 @@
       <option name="project" value="LOCAL" />
       <updated>1670679661074</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Create: problem draw a rectangle">
+      <created>1670681649113</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1670681649113</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Create: problem draw a rectangle">
+      <created>1670681661803</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1670681661803</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -95,6 +93,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Create: problem square drawing" />
     <MESSAGE value="update nhẹ" />
-    <option name="LAST_COMMIT_MESSAGE" value="update nhẹ" />
+    <MESSAGE value="Create: problem draw a rectangle" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create: problem draw a rectangle" />
   </component>
 </project>

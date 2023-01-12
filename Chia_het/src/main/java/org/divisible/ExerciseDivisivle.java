@@ -1,4 +1,4 @@
-package org.example;
+package org.divisible;
 
 import java.util.List;
 
@@ -20,14 +20,14 @@ public class ExerciseDivisivle {
   // Hàm hiển thị
   public final void display(List<Integer> list) {
 
-    int size = list.size();
+    int size = list.size(); // gán chiều dài của list thành size
 
     for (int index = 0; index < size - 1; index++) {// bắt đầu duyệt trong list đã lưu
 
       System.out.printf(list.get(index) + ","); // hiển thị các số đã luu
 
     }
-    System.out.println(list.get(size - 1));
+    System.out.println(list.get(size - 1)); // hiển thị giá trị cuối cùng của list
   }
 
 }

@@ -1,4 +1,4 @@
-package org.example;
+package org.divisible;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +13,16 @@ public class Main {
   public static void main(String[] args) {
 
     List<Integer> list = new ArrayList<>(); // tạo một mảng tên là list
+    int seriesOfNumbers = 10; // khởi tạo giá trị ban đầu = 10
 
     var exerciseDivisivle = new ExerciseDivisivle();
+    var exerciseDivisivle2 = new ExerciseDivisivle2();
 
-    exerciseDivisivle.search(list);
+//    exerciseDivisivle.search(list);
+//
+//    exerciseDivisivle.display(list);
 
-    exerciseDivisivle.display(list);
+    exerciseDivisivle2.display(seriesOfNumbers);
 
   }
 }

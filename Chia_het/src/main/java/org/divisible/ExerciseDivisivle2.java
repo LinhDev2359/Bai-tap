@@ -2,6 +2,7 @@ package org.divisible;
 
 public class ExerciseDivisivle2 {
 
+  // Sử dụng đệ quy để thực hiện kiểm tra và hiển thị giá trị
   // Hàm kiểm tra và hiển thị giá trị
   public final void display(int seriesOfNumbers) {
 

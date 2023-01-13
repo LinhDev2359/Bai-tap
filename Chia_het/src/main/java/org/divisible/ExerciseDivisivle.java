@@ -5,7 +5,7 @@ import java.util.List;
 public class ExerciseDivisivle {
 
   // Hàm tìm các số chia hết
-  public final void search(List<Integer> list) {
+  public void search(List<Integer> list) {
 
     for (int index = 10; index <= 200; index++) { // duyệt vòng lặp for giới hạn từ 10-200
 
@@ -18,7 +18,7 @@ public class ExerciseDivisivle {
   }
 
   // Hàm hiển thị
-  public final void display(List<Integer> list) {
+  public void display(List<Integer> list) {
 
     int size = list.size(); // gán chiều dài của list thành size
 

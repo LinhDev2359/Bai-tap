@@ -4,7 +4,7 @@ public class ExerciseDivisivle2 {
 
   // Sử dụng đệ quy để thực hiện kiểm tra và hiển thị giá trị
   // Hàm kiểm tra và hiển thị giá trị
-  public final void display(int seriesOfNumbers) {
+  public void display(int seriesOfNumbers) {
 
     seriesOfNumbers++; // tăng biến ln sau mỗi lần đệ quy
     if (seriesOfNumbers <= 200) { // điều kiện dừng của chương trình là <=200

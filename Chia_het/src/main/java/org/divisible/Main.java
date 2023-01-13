@@ -12,17 +12,24 @@ public class Main {
   // rồi chương trình thực hiện kiểm tra xong sẽ in lần lượt các số đã lưu ra
   public static void main(String[] args) {
 
+    StringBuilder stringBuilder = new StringBuilder();
     List<Integer> list = new ArrayList<>(); // tạo một mảng tên là list
     int seriesOfNumbers = 10; // khởi tạo giá trị ban đầu = 10
 
     var exerciseDivisivle = new ExerciseDivisivle();
     var exerciseDivisivle2 = new ExerciseDivisivle2();
+    var exerciseDivisivle3 = new ExerciseDivisivle3();
 
 //    exerciseDivisivle.search(list);
 //
 //    exerciseDivisivle.display(list);
 
-    exerciseDivisivle2.display(seriesOfNumbers);
+//    exerciseDivisivle2.display(seriesOfNumbers);
+
+    exerciseDivisivle3.search(stringBuilder);
+    exerciseDivisivle3.display(stringBuilder);
+    exerciseDivisivle3.display2(stringBuilder);
+    exerciseDivisivle3.display3(stringBuilder);
 
   }
 }

@@ -55,13 +55,22 @@ public class ArrayExecises {
 
     }
 
-    System.out.printf("Day so sau khi duoc kiem tra");
+    List<Integer> listArrange = new ArrayList<>();
+
+    System.out.printf("\nDay so sau khi duoc kiem tra la: ");
     for (int index = 0; index < length; index++) {
-      if (searchNumber1AtTheTop(list.get(index)) == 1
+      if ((list.get(index) %10) == 0
           || searchNumber3AtTheEnd(list.get(index)) == 3) {// điều kiện để kiểm tra số đó
-        System.out.printf(list.get(index) + " ");
+        listArrange.add(list.get(index));
       }
     }
+
+    listArrange.sort(Comparator.naturalOrder());
+    String result = new String(listArrange.toString());
+    String result1 = result.replace("[", " ");
+    String result2 = result1.replace("]", " ");
+    System.out.printf(result2 + " ");
+
 
   }
 
@@ -77,24 +86,6 @@ public class ArrayExecises {
     int check = number % 10;// ta lấy dư 10 để có thể lấy số hàng đơn vị
     return check;
 
-  }
-
-  /**
-   * Function to find numbers top in 1
-   * @param number - 1 value in array
-   * @return - get the first number of the number of dãy số ta đưa vào
-   */
-  public int searchNumber1AtTheTop(int number) {
-    int check = 0;
-
-    // vòng lặp để tìm ra số đầu là 1
-    // vòng lặp này sẽ chia 10 lấy dư và chia hẳn 10 để nhảy sang số tiếp theo cho tới khi được số cuối cùng không thể chia được nữa là cho tới số 0
-    while (number != 0) {
-      check = number % 10;
-      number /= 10;
-    }
-
-    return check;
   }
 
 

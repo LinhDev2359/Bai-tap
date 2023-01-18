@@ -1,20 +1,17 @@
 package org.trandingjava.arrayexecises;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ArrayExecises {
 
-
   /**
-   * Function that input the length of the array and input the value into the array
-   * @return - 1 list of values I entered has been sorted
+   * function that input the number of elements and values
+   * @return - 1 value string entered
    */
-  public List<Integer> set() {
+  public StringBuilder set() {
     Scanner scanner = new Scanner(System.in);
-    List<Integer> list = new ArrayList<>();
+    StringBuilder stringBuilder = new StringBuilder();
     int length;
     int value;
 
@@ -31,62 +28,44 @@ public class ArrayExecises {
     for (int index = 0; index < length; index++) {
       System.out.printf("Gia tri thu " + (index + 1) + ": ");
       value = scanner.nextInt();
-      list.add(value);
+      stringBuilder.append(value + " ");
     }
 
-    //sử dụng phương thức sort để sắp xếp theo thứ tự tăng dần
-    list.sort(Comparator.naturalOrder());
-    return list;
+    return stringBuilder;
 
   }
 
   /**
-   * The function displays the required values and values
-   * @param list - 1 array where we need to find the numbers that satisfy the condition
+   * display function
+   * @param stringBuilder - string after being checked
    */
-  public void display(List<Integer> list) {
+  public void display(StringBuilder stringBuilder) {
 
-    int length = list.size();
-
-    System.out.printf("Day so ban dau la: ");
-    for (int index = 0; index < length; index++) {
-
-      System.out.printf(list.get(index) + " ");
-
+    System.out.printf(stringBuilder + " ");
     }
 
-    List<Integer> listArrange = new ArrayList<>();
+  /**
+   * search function
+   * @param stringBuilder1 - string after import
+   * @return - string after being checked
+   */
 
-    System.out.printf("\nDay so sau khi duoc kiem tra la: ");
-    for (int index = 0; index < length; index++) {
-      if ((list.get(index) %10) == 0
-          || searchNumber3AtTheEnd(list.get(index)) == 3) {// điều kiện để kiểm tra số đó
-        listArrange.add(list.get(index));
+  public StringBuilder search(StringBuilder stringBuilder1) {
+
+    String string = stringBuilder1.toString();
+    String[] stringArray = string.split("\\s");
+
+    StringBuilder stringBuilder2 = new StringBuilder();
+
+
+    for (String temp : stringArray) {
+      int number = Integer.parseInt(temp);
+      if (number %10 == 0  || number %10 == 3) {
+        stringBuilder2.append(number + " ");
       }
     }
 
-    listArrange.sort(Comparator.naturalOrder());
-    String result = new String(listArrange.toString());
-    String result1 = result.replace("[", " ");
-    String result2 = result1.replace("]", " ");
-    System.out.printf(result2 + " ");
-
-
+    return stringBuilder2;
   }
-
-  //Hàm tìm các số có đuôi là 3
-
-  /**
-   * Function to find numbers ending in 3
-   * @param number - 1 value in array
-   * @return - get a balance of 10 of the number you entered
-   */
-  public int searchNumber3AtTheEnd(int number) {
-
-    int check = number % 10;// ta lấy dư 10 để có thể lấy số hàng đơn vị
-    return check;
-
-  }
-
 
 }

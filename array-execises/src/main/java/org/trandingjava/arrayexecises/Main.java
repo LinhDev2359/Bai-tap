@@ -1,5 +1,7 @@
 package org.trandingjava.arrayexecises;
 
+import java.util.ArrayList;
+
 //Ý tưởng
 // Nhập độ dài của mảng
 // Nhập giá trị vào mảng
@@ -12,11 +14,11 @@ public class Main {
 
     StringBuilder stringBuilder = arrayExecises.set();
 
-    StringBuilder stringBuilder1 = arrayExecises.sort(stringBuilder);
+    ArrayList<Integer> stringBuilder1 = arrayExecises.sort(stringBuilder);
 
-    StringBuilder stringBuilder2 = arrayExecises.search(stringBuilder1);
+    ArrayList<Integer> stringBuilder2 = arrayExecises.search(stringBuilder1);
 
-    StringBuilder stringBuilder3 = arrayExecises.suffer(stringBuilder2);
+    ArrayList<Integer> stringBuilder3 = arrayExecises.suffer(stringBuilder2);
 
     arrayExecises.display(stringBuilder3);
   }

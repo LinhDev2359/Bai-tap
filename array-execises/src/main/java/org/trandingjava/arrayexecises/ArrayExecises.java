@@ -1,7 +1,9 @@
 package org.trandingjava.arrayexecises;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,65 +41,64 @@ public class ArrayExecises {
 
   /**
    * display function
-   * @param stringBuilder - string after being checked
+   * @param list - list after being shuffled
    */
-  public void display(StringBuilder stringBuilder) {
+  public void display(ArrayList<Integer> list) {
 
-    Collections.shuffle(Collections.singletonList(stringBuilder));
-    System.out.printf(stringBuilder + " ");
+    System.out.printf(list + " ");
     }
 
   /**
-   * search function
-   * @param stringBuilder1 - string after import
-   * @return - string after being checked
+   * number search function satisfying the condition
+   * @param arrayList - sequence of numbers after being sorted
+   * @return a sequence of numbers satisfying the condition
    */
+  public ArrayList<Integer> search(ArrayList<Integer> arrayList) {
 
-  public StringBuilder search(StringBuilder stringBuilder1) {
+    ArrayList<Integer> list = new ArrayList<>();
 
-    String string = stringBuilder1.toString();
-    String[] stringArray = string.split("\\s");
-
-    StringBuilder stringBuilder2 = new StringBuilder();
-
-
-    for (String temp : stringArray) {
-      int number = Integer.parseInt(temp);
-      if (number %10 == 0  || number %10 == 3) {
-        stringBuilder2.append(number + " ");
+    // tìm kiếm giá trị thỏa mãn điều kiện
+    for (int temp : arrayList) {
+      if (temp %10 == 0  || temp %10 == 3) {
+        list.add(temp);
       }
     }
 
-    return stringBuilder2;
+    return list;
   }
 
   /**
-   * value shuffle function
-   * @param stringBuilder - values after being checked
-   * @return values after being shuffled
+   * position shuffle function
+   * @param list - a sequence of numbers satisfying the condition
+   * @return a sequence of numbers after being shuffled
    */
-  public StringBuilder suffer(StringBuilder stringBuilder) {
-    String string = stringBuilder.toString();
-    String[] stringArray = string.split("\\s");
-    Collections.shuffle(List.of(stringArray));
+  public ArrayList<Integer> suffer(ArrayList<Integer> list) {
 
-    StringBuilder stringBuilder1 = new StringBuilder(stringArray.toString());
-    return stringBuilder1;
+    Collections.shuffle(list); //xáo trộn vị trí
+
+    return list;
   }
 
   /**
    * sort function
-   * @param stringBuilder - value after input
-   * @return - value after sorted
+   * @param stringBuilder - string value after input
+   * @return a list after being sorted
    */
-  public StringBuilder sort(StringBuilder stringBuilder) {
+  public ArrayList<Integer> sort(StringBuilder stringBuilder) {
+
     String string = stringBuilder.toString();
     String[] stringArray = string.split("\\s");
 
-    Arrays.sort(stringArray);
+    ArrayList<Integer> list = new ArrayList<>();
 
-    StringBuilder stringBuilder1 = new StringBuilder(stringArray.toString());
-    return stringBuilder1;
+    for (String temp : stringArray) {
+      int number = Integer.parseInt(temp);
+      list.add(number);
+    }
+
+    list.sort(Comparator.naturalOrder()); // sắp xếp từ bé đến lớn
+
+    return list;
   }
 
 }

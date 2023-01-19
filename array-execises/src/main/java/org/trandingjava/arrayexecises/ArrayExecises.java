@@ -1,6 +1,8 @@
 package org.trandingjava.arrayexecises;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class ArrayExecises {
@@ -41,6 +43,7 @@ public class ArrayExecises {
    */
   public void display(StringBuilder stringBuilder) {
 
+    Collections.shuffle(Collections.singletonList(stringBuilder));
     System.out.printf(stringBuilder + " ");
     }
 
@@ -66,6 +69,35 @@ public class ArrayExecises {
     }
 
     return stringBuilder2;
+  }
+
+  /**
+   * value shuffle function
+   * @param stringBuilder - values after being checked
+   * @return values after being shuffled
+   */
+  public StringBuilder suffer(StringBuilder stringBuilder) {
+    String string = stringBuilder.toString();
+    String[] stringArray = string.split("\\s");
+    Collections.shuffle(List.of(stringArray));
+
+    StringBuilder stringBuilder1 = new StringBuilder(stringArray.toString());
+    return stringBuilder1;
+  }
+
+  /**
+   * sort function
+   * @param stringBuilder - value after input
+   * @return - value after sorted
+   */
+  public StringBuilder sort(StringBuilder stringBuilder) {
+    String string = stringBuilder.toString();
+    String[] stringArray = string.split("\\s");
+
+    Arrays.sort(stringArray);
+
+    StringBuilder stringBuilder1 = new StringBuilder(stringArray.toString());
+    return stringBuilder1;
   }
 
 }

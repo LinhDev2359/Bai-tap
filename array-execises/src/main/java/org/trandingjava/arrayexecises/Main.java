@@ -12,8 +12,12 @@ public class Main {
 
     StringBuilder stringBuilder = arrayExecises.set();
 
-    StringBuilder stringBuilder2 = arrayExecises.search(stringBuilder);
+    StringBuilder stringBuilder1 = arrayExecises.sort(stringBuilder);
 
-    arrayExecises.display(stringBuilder2);
+    StringBuilder stringBuilder2 = arrayExecises.search(stringBuilder1);
+
+    StringBuilder stringBuilder3 = arrayExecises.suffer(stringBuilder2);
+
+    arrayExecises.display(stringBuilder3);
   }
 }

@@ -1,0 +1,24 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+  <changeSet id="20230319-0932-add-table-account" author="YaLynk">
+    <createTable tableName="account">
+      <column name="id" type="bigint">
+        <constraints primaryKey="true" primaryKeyName="pk_id_account" unique="true"/>
+      </column>
+      <column name="account_number" type="int">
+        <constraints nullable="true"/>
+      </column>
+      <column name="number_money_account" type="int">
+        <constraints nullable="true"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>

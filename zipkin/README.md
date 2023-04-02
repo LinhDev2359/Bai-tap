@@ -29,6 +29,7 @@ sử dụng Java8, chưa tìm được cách sử dụng modul và java cao hơn
 ![image](https://user-images.githubusercontent.com/103310499/229353947-cc88090e-ce49-4287-85cb-59ffb91accd0.png)
 
 - Sau đó ta sẽ cấu hình cho server này
+
 ![image](https://user-images.githubusercontent.com/103310499/229354017-7ac0f94a-665d-4cbb-adeb-701e2a1b0c1d.png)
 
 - Như vậy ta đã có một server hoàn chỉnh của Zipkin
@@ -37,6 +38,7 @@ sử dụng Java8, chưa tìm được cách sử dụng modul và java cao hơn
 
 - Bây giờ ta sẽ cài đặt một client 
 - Trước tiên ta vẫn phải cài đặt dependency cho nó trước
+
 ![image](https://user-images.githubusercontent.com/103310499/229354578-c3c31ace-6759-4fc6-b55e-7f95b28f572a.png)
 ![image](https://user-images.githubusercontent.com/103310499/229354589-a575359a-f1cb-4570-97d9-19791daca063.png)
 ![image](https://user-images.githubusercontent.com/103310499/229354594-6c1834fe-96e0-46df-8428-fa7b3fb98c3d.png)
@@ -55,5 +57,13 @@ nghĩa là gì với Zipkin của chúng ta.
   + sample là những dữ liệu của span sẽ được gửi tới các hệ thống như Zipkin
   + reporter: chịu trách nhiệm gửi thông tin trace đến Zipkin Server
   + tracing: nó sẽ chứa toàn bộ thông tin của sample và reporter và cho phép bạn theo dõi các yêu cầu HTTP khi chúng đi qua các ứng dụng khác nhau.
+
+- Ở đây tôi có tạo một controller của client1 và client2
+![image](https://user-images.githubusercontent.com/103310499/229355674-02222d09-5200-4172-9c36-f53c426a8922.png)
+![image](https://user-images.githubusercontent.com/103310499/229355698-631ad3b1-0c2b-4511-9ab7-527d69aa8dd0.png)
+
+- Và kết quả đem lại
+![image](https://user-images.githubusercontent.com/103310499/229355728-b068976a-e1ea-4d5d-a501-f1b0f9319e98.png)
+
 
 

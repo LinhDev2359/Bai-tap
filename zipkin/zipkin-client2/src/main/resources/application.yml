@@ -1,0 +1,10 @@
+
+spring:
+  application:
+    name: zipkin-client2
+  zipkin:
+    base-url: http://localhost:9412/
+server:
+  port: 8081
+
+

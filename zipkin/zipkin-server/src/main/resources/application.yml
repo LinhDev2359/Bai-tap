@@ -1,0 +1,15 @@
+server:
+  port: 9412
+
+spring:
+  application:
+    name: zipkin-server
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/zipkin
+    username: root
+    password: linh2002
+
+#zipkin:
+#  storage:
+#    type: jdbc

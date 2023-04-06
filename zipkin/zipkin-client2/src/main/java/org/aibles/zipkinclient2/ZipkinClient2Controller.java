@@ -13,6 +13,6 @@ public class ZipkinClient2Controller {
   @GetMapping("/greet")
   public String greet() {
     logger.info("greet() method is called");
-    return "World";
+    return "YaLynk hello everybody";
   }
 }

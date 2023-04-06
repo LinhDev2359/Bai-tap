@@ -15,6 +15,8 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
+<!--		<spring-cloud.version>2.23.2</spring-cloud.version>-->
+<!--		<spring-cloud.version>Edgware.RELEASE</spring-cloud.version>-->
 		<spring-cloud.version>2022.0.2</spring-cloud.version>
 	</properties>
 
@@ -40,6 +42,24 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>io.micrometer</groupId>-->
+<!--			<artifactId>micrometer-core</artifactId>-->
+<!--			<version>1.10.5</version>-->
+<!--		</dependency>-->
+		<dependency>
+			<groupId>io.zipkin.reporter2</groupId>
+			<artifactId>zipkin-sender-okhttp3</artifactId>
+			<version>2.16.2</version>
+		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>io.micrometer</groupId>-->
+<!--			<artifactId>micrometer-tracing</artifactId>-->
+<!--			<version>1.0.3</version>-->
+<!--		</dependency>-->
+
+
+
 	</dependencies>
 
 
@@ -53,6 +73,8 @@
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
+
+
 	</dependencyManagement>
 
 

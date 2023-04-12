@@ -24,6 +24,7 @@ thiện khả năng giám sát và quản lý hệ thống, giúp ta giải quy�
 - Sau đây tôi sẽ hướng dẫn mọi người cách tạo một Zipkin server:
     + Bước 1: Đầu tiên ta phải clone code của zipkin tại link: https://github.com/openzipkin/zipkin
     + Bước 2: Sau khi clone về ta sẽ mở terminal của nó 
+    
       ![image](https://user-images.githubusercontent.com/103310499/231322564-6c152cc5-2dfa-4c38-957b-6c1ebe4e9477.png)
     + Bước 3: Sau khi mở xong ta sẽ chạy lệnh: ./mvnw -DskipTests --also-make -pl zipkin-server clean install (chờ cho nó build zipkin server, sẽ mất chút thời gian)
     + Bước 4: Sau khi chạy lệnh vừa rồi thì coi như chúng ta đã cấu hình thành công. Để khởi động Zipkin server thì ta sẽ chạy lệnh sau: java -jar ./zipkin-server/target/zipkin-server-2.24.1-SNAPSHOT-exec.jar 
@@ -40,6 +41,7 @@ thiện khả năng giám sát và quản lý hệ thống, giúp ta giải quy�
 ![image](https://user-images.githubusercontent.com/103310499/229354594-6c1834fe-96e0-46df-8428-fa7b3fb98c3d.png)
 
 - Về phía client thì chúng ta sẽ phải cấu hình chúng như sau
+
 ![image](https://user-images.githubusercontent.com/103310499/231325426-7ce4b7e3-62da-44ec-a6a8-eb77ae6db5e4.png)
 ![image](https://user-images.githubusercontent.com/103310499/231325530-56ed2b83-8b71-4463-9b04-9cf61046ddd4.png)
 

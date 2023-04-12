@@ -19,22 +19,18 @@ thiện khả năng giám sát và quản lý hệ thống, giúp ta giải quy�
 3. How?
 
 - Để có thể làm về Zipkin service thì đầu tiên ta sẽ phải cài đặt một Zipkin server trước.
-- Cấu hình Zipkin ser vẻ thì trước đó ta sẽ phải add dependency cho nó trước. Sau đâu là cách add dependency(Đang sử dụng version modul thấp và 
-sử dụng Java8, chưa tìm được cách sử dụng modul và java cao hơn).
+- Trước đó chúng ta có ta thường sử dụng @EnableZipkinServer để cấu hình cho Zipkin server. Thời điểm hiện tại, cách sử dụng này không còn được hỗ trợ nữa.
+- Vậy chúng ta tạo một Zipkin server kiểu gì? 
+- Sau đây tôi sẽ hướng dẫn mọi người cách tạo một Zipkin server:
+    + Bước 1: Đầu tiên ta phải clone code của zipkin tại link: https://github.com/openzipkin/zipkin
+    + Bước 2: Sau khi clone về ta sẽ mở terminal của nó 
+      ![image](https://user-images.githubusercontent.com/103310499/231322564-6c152cc5-2dfa-4c38-957b-6c1ebe4e9477.png)
+    + Bước 3: Sau khi mở xong ta sẽ chạy lệnh: ./mvnw -DskipTests --also-make -pl zipkin-server clean install (chờ cho nó build zipkin server, sẽ mất chút thời gian)
+    + Bước 4: Sau khi chạy lệnh vừa rồi thì coi như chúng ta đã cấu hình thành công. Để khởi động Zipkin server thì ta sẽ chạy lệnh sau: java -jar ./zipkin-server/target/zipkin-server-2.24.1-SNAPSHOT-exec.jar 
+      ![image](https://user-images.githubusercontent.com/103310499/231323147-92d475e4-a5ef-491f-8d77-3615977599d9.png)
 
-![image](https://user-images.githubusercontent.com/103310499/229353843-e0f914e4-2e39-44cd-ac9f-4c77c47e9145.png)
-![image](https://user-images.githubusercontent.com/103310499/229353859-fa58ceb9-f139-4dab-8377-a5946147f963.png)
-
-- Tiếp đến ta sẽ đặt một annotation để đánh dấu service này là một server của Zipkin
-![image](https://user-images.githubusercontent.com/103310499/229353947-cc88090e-ce49-4287-85cb-59ffb91accd0.png)
-
-- Sau đó ta sẽ cấu hình cho server này
-
-![image](https://user-images.githubusercontent.com/103310499/229354017-7ac0f94a-665d-4cbb-adeb-701e2a1b0c1d.png)
-
-- Như vậy ta đã có một server hoàn chỉnh của Zipkin
-![image](https://user-images.githubusercontent.com/103310499/229354051-c6dd63cb-a614-4ad1-8bdb-5b5e7378025b.png)
-
+- Chúng ta đã hoàn thành cài đặt và khởi động Zipkin server. Đây là giao diện của nó:
+![image](https://user-images.githubusercontent.com/103310499/231324027-e4a3d0d8-f952-41cd-8155-b75d841fa121.png)
 
 - Bây giờ ta sẽ cài đặt một client 
 - Trước tiên ta vẫn phải cài đặt dependency cho nó trước
@@ -43,8 +39,10 @@ sử dụng Java8, chưa tìm được cách sử dụng modul và java cao hơn
 ![image](https://user-images.githubusercontent.com/103310499/229354589-a575359a-f1cb-4570-97d9-19791daca063.png)
 ![image](https://user-images.githubusercontent.com/103310499/229354594-6c1834fe-96e0-46df-8428-fa7b3fb98c3d.png)
 
-- Về phía client thì chúng ta không cần sử dụng annotation nào của Zipkin nữa cả nhưng về cấu hình chúng ta sẽ thực hiện như sau
-![image](https://user-images.githubusercontent.com/103310499/229354637-d769e41b-f8b6-42c4-9808-43f167baf3c4.png)
+- Về phía client thì chúng ta sẽ phải cấu hình chúng như sau
+![image](https://user-images.githubusercontent.com/103310499/231325426-7ce4b7e3-62da-44ec-a6a8-eb77ae6db5e4.png)
+![image](https://user-images.githubusercontent.com/103310499/231325530-56ed2b83-8b71-4463-9b04-9cf61046ddd4.png)
+
 
 - Ở đây spring.zipkin.base-url: sẽ là chỗ để ta có hể chỉ đến phía port mà server Zipkin đã config
 - sampler: probability ở đây có nghĩa là mỗi một request sẽ có một trace ID mới và bắt đầu một hoạt động mới
@@ -59,11 +57,17 @@ nghĩa là gì với Zipkin của chúng ta.
   + tracing: nó sẽ chứa toàn bộ thông tin của sample và reporter và cho phép bạn theo dõi các yêu cầu HTTP khi chúng đi qua các ứng dụng khác nhau.
 
 - Ở đây tôi có tạo một controller của client1 và client2
-![image](https://user-images.githubusercontent.com/103310499/229355674-02222d09-5200-4172-9c36-f53c426a8922.png)
-![image](https://user-images.githubusercontent.com/103310499/229355698-631ad3b1-0c2b-4511-9ab7-527d69aa8dd0.png)
+![image](https://user-images.githubusercontent.com/103310499/231324344-358b288a-52f6-4964-b155-f8751612620b.png)
+![image](https://user-images.githubusercontent.com/103310499/231324374-a0e29a86-010e-40a9-bca7-cca4aefd86a0.png)
 
-- Và kết quả đem lại
-![image](https://user-images.githubusercontent.com/103310499/229355728-b068976a-e1ea-4d5d-a501-f1b0f9319e98.png)
+
+- Khi chúng ta chạy localhost như bên dưới thì mọi hành động sẽ được ghi lại và đẩy lên Zipkin server
+![image](https://user-images.githubusercontent.com/103310499/231324413-86faf22c-bef6-4a37-b495-98d3d40092bd.png)
+
+- Đây sẽ là các thông tin được theo dõi và được Zipkin server lưu trữ
+- ![image](https://user-images.githubusercontent.com/103310499/231325060-7e87b50e-ca00-4993-89c4-b3d8062098a3.png)
+
+
 
 
 

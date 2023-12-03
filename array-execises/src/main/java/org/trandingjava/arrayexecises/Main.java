@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Main {
 
   public static void main(String[] args) {
-    System.out.println("Đây là hàm main");
+    System.out.println("Đây là hàm main array");
     var arrayExecises = new ArrayExecises();
 
     StringBuilder stringBuilder = arrayExecises.set();

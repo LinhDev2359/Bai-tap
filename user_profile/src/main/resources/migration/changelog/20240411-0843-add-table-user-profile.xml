@@ -1,0 +1,101 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+  <changeSet id="20240411-0843-add-table-user-profile" author="YaLynk" >
+    <createTable tableName="user_profile">
+      <column name="id" type="varchar(255)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="first_name" type="varchar(100)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_name" type="varchar(100)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="gender" type="varchar(100)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="date_of_birth" type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="phone" type="varchar(50)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="email" type="varchar(200)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="address" type="varchar(200)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_at" type="bigint">
+        <constraints nullable="true"/>
+      </column>
+      <column name="updated_at" type="bigint">
+        <constraints nullable="true"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="20240411-0843-add-table-post" author="YaLynk" >
+    <createTable tableName="post">
+      <column name="id" type="varchar(255)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="title" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="content" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="author" type="varchar(100)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="category" type="varchar(100)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="user_profile_id" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_at" type="bigint">
+        <constraints nullable="true"/>
+      </column>
+      <column name="updated_at" type="bigint">
+        <constraints nullable="true"/>
+      </column>
+    </createTable>
+    <addForeignKeyConstraint baseTableName="post" baseColumnNames="user_profile_id"
+      constraintName="FK_post_user_profile"
+      referencedTableName="user_profile" referencedColumnNames="id"/>
+  </changeSet>
+
+  <changeSet id="20240411-0843-add-table-image" author="YaLynk" >
+    <createTable tableName="image">
+      <column name="id" type="varchar(255)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="image_url" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="post_id" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_at" type="bigint">
+        <constraints nullable="true"/>
+      </column>
+      <column name="updated_at" type="bigint">
+        <constraints nullable="true"/>
+      </column>
+    </createTable>
+    <addForeignKeyConstraint baseTableName="image" baseColumnNames="post_id"
+      constraintName="FK_image_post"
+      referencedTableName="post" referencedColumnNames="id"/>
+  </changeSet>
+
+
+</databaseChangeLog>

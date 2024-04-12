@@ -9,6 +9,8 @@ import org.aibles.user_profile.entity.base.BaseEntity;
 @Table(name = "user_profile")
 public class UserProfile extends BaseEntity {
 
+  private String username;
+  private String password;
   private String firstName;
   private String lastName;
   private Gender gender;
@@ -20,8 +22,10 @@ public class UserProfile extends BaseEntity {
   public UserProfile() {
   }
 
-  public UserProfile(String firstName, String lastName, Gender gender, Integer dateOfBirth,
+  public UserProfile(String username, String password, String firstName, String lastName, Gender gender, Integer dateOfBirth,
       String phone, String email, String address) {
+    this.username = username;
+    this.password = password;
     this.firstName = firstName;
     this.lastName = lastName;
     this.gender = gender;
@@ -87,8 +91,27 @@ public class UserProfile extends BaseEntity {
     this.address = address;
   }
 
-  public static UserProfile of(String firstName, String lastName, Gender gender, Integer dateOfBirth, String phone, String email, String address) {
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public static UserProfile of(String username, String password, String firstName, String lastName,
+      Gender gender, Integer dateOfBirth, String phone, String email, String address) {
     UserProfile userProfile = new UserProfile();
+    userProfile.setUsername(username);
+    userProfile.setPassword(password);
     userProfile.setFirstName(firstName);
     userProfile.setLastName(lastName);
     userProfile.setGender(gender);
@@ -96,6 +119,14 @@ public class UserProfile extends BaseEntity {
     userProfile.setPhone(phone);
     userProfile.setEmail(email);
     userProfile.setAddress(address);
+    return userProfile;
+  }
+
+  public static UserProfile of(String username, String password, String email) {
+    UserProfile userProfile = new UserProfile();
+    userProfile.setUsername(username);
+    userProfile.setPassword(password);
+    userProfile.setEmail(email);
     return userProfile;
   }
 }

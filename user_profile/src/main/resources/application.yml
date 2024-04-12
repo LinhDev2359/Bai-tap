@@ -7,3 +7,12 @@ spring:
     password: linh2002
   application:
     name: user-profile-service
+
+application:
+  authentication:
+    access_token:
+      jwt_secret: FHghAas4HaafJA5ghk3HAF
+      life_time: 3600000
+    refresh_token:
+      jwt_secret: ZFDF8GJS4ADFA64ASDeimY
+      life_time: 3000000

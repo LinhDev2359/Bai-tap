@@ -3,6 +3,7 @@ package org.aibles.user_profile.facade.impl;
 import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.aibles.user_profile.constant.Role;
 import org.aibles.user_profile.dto.request.LoginRequest;
 import org.aibles.user_profile.dto.request.RefreshTokenRequest;
 import org.aibles.user_profile.dto.request.RegisterRequest;
@@ -46,9 +47,9 @@ public class AuthFacadeServiceImpl implements AuthFacadeService {
       throw new PasswordNotMatchesException(request.getPassword());
     }
     String accessToken = authTokenService.generateAccessToken(
-        user.getId(), user.getEmail(), request.getUsername());
+        user.getId(), user.getEmail(), request.getUsername(), user.getRole().toString());
     String refreshToken = authTokenService.generateRefreshToken(
-        user.getId(), user.getEmail(), request.getUsername());
+        user.getId(), user.getEmail(), request.getUsername(), user.getRole().toString());
     storeTokens(user.getId(), accessToken, refreshToken);
     return LoginResponse.from(accessToken, refreshToken, accessTokenLifeTime, refreshTokenLifeTime);
   }
@@ -64,9 +65,9 @@ public class AuthFacadeServiceImpl implements AuthFacadeService {
       throw new InvalidRefreshTokenException();
     }
     String accessToken = authTokenService.generateAccessToken(
-        userProfile.getId(), userProfile.getEmail(), userProfile.getUsername());
+        userProfile.getId(), userProfile.getEmail(), userProfile.getUsername(), userProfile.getRole().toString());
     String refreshToken = authTokenService.generateRefreshToken(
-        userProfile.getId(), userProfile.getEmail(), userProfile.getUsername());
+        userProfile.getId(), userProfile.getEmail(), userProfile.getUsername(), userProfile.getRole().toString());
     storeTokens(userProfile.getId(), accessToken, refreshToken);
     return LoginResponse.from(accessToken, refreshToken, accessTokenLifeTime, refreshTokenLifeTime);
   }

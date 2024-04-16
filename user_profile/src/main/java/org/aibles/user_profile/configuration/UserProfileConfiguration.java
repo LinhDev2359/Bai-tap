@@ -1,5 +1,6 @@
 package org.aibles.user_profile.configuration;
 
+import org.aibles.user_profile.error_handle.AuthenticationErrorHandle;
 import org.aibles.user_profile.facade.AuthFacadeService;
 import org.aibles.user_profile.facade.ImageFacadeService;
 import org.aibles.user_profile.facade.PostFacadeService;

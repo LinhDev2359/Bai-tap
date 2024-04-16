@@ -39,6 +39,9 @@
       <column name="address" type="varchar(200)">
         <constraints nullable="true"/>
       </column>
+      <column name="role" type="varchar(200)">
+        <constraints nullable="false"/>
+      </column>
       <column name="created_at" type="bigint">
         <constraints nullable="true"/>
       </column>

@@ -6,6 +6,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,12 +27,13 @@ public class AuthTokenServiceImpl implements AuthTokenService {
 
   @Override
   @Transactional
-  public String generateAccessToken(String userId, String email, String username) {
+  public String generateAccessToken(String userId, String email, String username, String role) {
     log.info("(generateAccessToken)userId: {}, email: {}, username: {}",
         userId, email, userId);
     var claims = new HashMap<String, Object>();
     claims.put("email", email);
     claims.put("username", username);
+    claims.put("role", role);
     return generateToken(userId, claims, accessTokenLifeTime, accessTokenJwtSecret);
   }
 
@@ -54,12 +56,13 @@ public class AuthTokenServiceImpl implements AuthTokenService {
 
   @Override
   @Transactional
-  public String generateRefreshToken(String userId, String email, String username) {
+  public String generateRefreshToken(String userId, String email, String username, String role) {
     log.info("(generateRefreshToken)userId: {}, email: {}, username: {}",
         userId, email, userId);
     var claims = new HashMap<String, Object>();
     claims.put("email", email);
     claims.put("username", username);
+    claims.put("role", role);
     return generateToken(userId, claims, refreshTokenLifeTime, refreshTokenJwtSecret);
   }
 

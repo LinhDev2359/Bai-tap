@@ -30,6 +30,7 @@ public class AuthController {
   @ResponseStatus(HttpStatus.CREATED)
   public Response register(@Valid @RequestBody RegisterRequest request) {
     log.info("(register)request: {}", request);
+    request.validateRole();
     authFacadeService.register(request);
     return Response.of(HttpStatus.CREATED.value(), "REGISTER SUCCESS!!!");
   }

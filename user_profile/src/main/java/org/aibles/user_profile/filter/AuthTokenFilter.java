@@ -6,17 +6,23 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aibles.user_profile.service.AuthTokenService;
 import org.aibles.user_profile.service.UserProfileService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 @RequiredArgsConstructor
 @Slf4j
+@Component
 public class AuthTokenFilter extends OncePerRequestFilter {
 
   private final AuthTokenService authTokenService;
@@ -50,9 +56,10 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     if(Objects.nonNull(userId) && Objects.isNull(SecurityContextHolder.getContext().getAuthentication())) {
       var user = userProfileService.findById(userId);
       if(authTokenService.validateAccessToken(jwtToken, userId)) {
+        Collection<GrantedAuthority> authorities = Collections.singletonList( new SimpleGrantedAuthority("ROLE_" + user.getRole().toString()));
         var usernamePasswordAuthToken =
             new UsernamePasswordAuthenticationToken(
-                user.getUsername(), user.getId(), null);
+                user.getUsername(), user.getId(), authorities);
         usernamePasswordAuthToken.setDetails(user);
         SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthToken);
       }

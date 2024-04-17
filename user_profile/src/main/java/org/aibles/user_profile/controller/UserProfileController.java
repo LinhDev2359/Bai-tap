@@ -1,6 +1,7 @@
 package org.aibles.user_profile.controller;
 
 import static org.aibles.user_profile.constant.UserProfileApiConstant.BaseUrl.USER_PROFILE_URL;
+import static org.aibles.user_profile.util.SecurityService.getUserId;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,11 +29,11 @@ public class UserProfileController {
   private final UserProfileService service;
   private final UserProfileFacadeService userProfileFacadeService;
 
-  @GetMapping("/{id}")
+  @GetMapping("/self")
   @ResponseStatus(HttpStatus.OK)
-  public Response getById(@Validated @PathVariable("id") String id) {
-    log.info("(getById)id: {}", id);
-    return Response.of(HttpStatus.OK.value(), service.getById(id));
+  public Response getById() {
+    log.info("(getById)id: {}", getUserId());
+    return Response.of(HttpStatus.OK.value(), service.getById(getUserId()));
   }
 
   @GetMapping()
@@ -51,11 +52,10 @@ public class UserProfileController {
   }
 
 
-  @PatchMapping("/{id}")
+  @PatchMapping("/self")
   @ResponseStatus(HttpStatus.OK)
-  public Response updateById(@Validated @PathVariable("id") String id,
-      @Validated @RequestBody UserProfileUpdateRequest request) {
-    log.info("(updateById)id: {}, request: {}", id, request);
-    return Response.of(HttpStatus.OK.value(), service.updateById(id, request));
+  public Response updateById(@Validated @RequestBody UserProfileUpdateRequest request) {
+    log.info("(updateById)id: {}, request: {}", getUserId(), request);
+    return Response.of(HttpStatus.OK.value(), service.updateById(getUserId(), request));
   }
 }

@@ -3,6 +3,7 @@ package org.aibles.user_profile.controller;
 import static org.aibles.user_profile.constant.UserProfileApiConstant.BaseUrl.USER_PROFILE_URL;
 import static org.aibles.user_profile.constant.UserProfileApiConstant.ResourceConstant.IMAGE;
 import static org.aibles.user_profile.constant.UserProfileApiConstant.ResourceConstant.POST;
+import static org.aibles.user_profile.util.SecurityService.getUserId;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,50 +33,45 @@ public class ImageController {
 
   private final ImageFacadeService service;
 
-  @PostMapping("/{userProfileId}" + POST + "/{postId}" + IMAGE)
+  @PostMapping("/" + POST + "/{postId}" + IMAGE)
   @ResponseStatus(HttpStatus.OK)
-  public Response create(@Validated @PathVariable("userProfileId") String userProfileId,
-      @Validated @PathVariable("postId") String postId,
+  public Response create(@Validated @PathVariable("postId") String postId,
       @Validated @RequestBody ImageCreateRequest request) {
-    log.info("(create)userProfileId: {}, postId: {}, request: {}", userProfileId, postId, request);
-    return Response.of(HttpStatus.OK.value(), service.create(userProfileId, postId, request));
+    log.info("(create)userProfileId: {}, postId: {}, request: {}", getUserId(), postId, request);
+    return Response.of(HttpStatus.OK.value(), service.create(getUserId(), postId, request));
   }
 
-  @GetMapping("/{userProfileId}" + POST + "/{postId}" + IMAGE + "/{id}")
+  @GetMapping("/" + POST + "/{postId}" + IMAGE + "/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public Response getById(@Validated @PathVariable("userProfileId") String userProfileId,
-      @Validated @PathVariable("postId") String postId,
+  public Response getById(@Validated @PathVariable("postId") String postId,
       @Validated @PathVariable("id") String id) {
-    log.info("(getById)userProfileId: {}, postId: {}, id: {}", userProfileId, postId, id);
-    return Response.of(HttpStatus.OK.value(), service.getById(userProfileId, postId, id));
+    log.info("(getById)userProfileId: {}, postId: {}, id: {}", getUserId(), postId, id);
+    return Response.of(HttpStatus.OK.value(), service.getById(getUserId(), postId, id));
   }
 
-  @GetMapping("/{userProfileId}" + POST + "/{postId}" + IMAGE)
+  @GetMapping("/" + POST + "/{postId}" + IMAGE)
   @ResponseStatus(HttpStatus.OK)
-  public Response getAll(@Validated @PathVariable("userProfileId") String userProfileId,
-      @Validated @PathVariable("postId") String postId) {
-    log.info("(getAll)userProfileId: {}, postId: {}", userProfileId, postId);
-    return Response.of(HttpStatus.OK.value(), service.getAll(userProfileId, postId));
+  public Response getAll(@Validated @PathVariable("postId") String postId) {
+    log.info("(getAll)userProfileId: {}, postId: {}", getUserId(), postId);
+    return Response.of(HttpStatus.OK.value(), service.getAll(getUserId(), postId));
   }
 
-  @DeleteMapping("/{userProfileId}" + POST + "/{postId}" + IMAGE + "/{id}")
+  @DeleteMapping("/" + POST + "/{postId}" + IMAGE + "/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public Response deleteById(@Validated @PathVariable("userProfileId") String userProfileId,
-      @Validated @PathVariable("postId") String postId,
+  public Response deleteById(@Validated @PathVariable("postId") String postId,
       @Validated @PathVariable("id") String id) {
-    log.info("(deleteById)userProfileId: {}, postId: {}, id: {}", userProfileId, postId, id);
-    service.deleteById(userProfileId, postId, id);
+    log.info("(deleteById)userProfileId: {}, postId: {}, id: {}", getUserId(), postId, id);
+    service.deleteById(getUserId(), postId, id);
     return Response.of(HttpStatus.OK.value(), "DELETE SUCCESS!!!");
   }
 
 
   @PatchMapping("/{userProfileId}" + POST + "/{postId}" + IMAGE + "/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public Response updateById(@Validated @PathVariable("userProfileId") String userProfileId,
-      @Validated @PathVariable("postId") String postId,
+  public Response updateById(@Validated @PathVariable("postId") String postId,
       @Validated @PathVariable("id") String id,
       @Validated @RequestBody ImageUpdateRequest request) {
-    log.info("(updateById)userProfileId: {}, postId: {}, id: {}, request: {}", userProfileId, postId, id, request);
-    return Response.of(HttpStatus.OK.value(), service.updateById(userProfileId, id, postId, request));
+    log.info("(updateById)userProfileId: {}, postId: {}, id: {}, request: {}", getUserId(), postId, id, request);
+    return Response.of(HttpStatus.OK.value(), service.updateById(getUserId(), id, postId, request));
   }
 }

@@ -1,8 +1,11 @@
 package org.aibles.user_profile.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import org.aibles.user_profile.constant.Gender;
+import org.aibles.user_profile.constant.Role;
 import org.aibles.user_profile.entity.base.BaseEntity;
 
 @Entity
@@ -18,6 +21,8 @@ public class UserProfile extends BaseEntity {
   private String phone;
   private String email;
   private String address;
+  @Enumerated(EnumType.STRING)
+  private Role role;
 
   public UserProfile() {
   }
@@ -107,6 +112,14 @@ public class UserProfile extends BaseEntity {
     this.password = password;
   }
 
+  public Role getRole() {
+    return role;
+  }
+
+  public void setRole(Role role) {
+    this.role = role;
+  }
+
   public static UserProfile of(String username, String password, String firstName, String lastName,
       Gender gender, Integer dateOfBirth, String phone, String email, String address) {
     UserProfile userProfile = new UserProfile();
@@ -122,11 +135,12 @@ public class UserProfile extends BaseEntity {
     return userProfile;
   }
 
-  public static UserProfile of(String username, String password, String email) {
+  public static UserProfile of(String username, String password, String email, Role role) {
     UserProfile userProfile = new UserProfile();
     userProfile.setUsername(username);
     userProfile.setPassword(password);
     userProfile.setEmail(email);
+    userProfile.setRole(role);
     return userProfile;
   }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aibles.user_profile.constant.Gender;
+import org.aibles.user_profile.constant.Role;
 import org.aibles.user_profile.dto.request.RegisterRequest;
 import org.aibles.user_profile.dto.request.UserProfileCreateRequest;
 import org.aibles.user_profile.dto.request.UserProfileUpdateRequest;
@@ -36,7 +37,8 @@ public class UserProfileServiceImpl implements UserProfileService {
       log.error("(register)username: {}", request.getUsername());
       throw new UsernameAlreadyExistedException(request.getUsername());
     }
-    repository.save(UserProfile.of(request.getUsername(), CryptUtil.getPasswordEncoder().encode(request.getPassword()), request.getEmail()));
+    repository.save(UserProfile.of(request.getUsername(), CryptUtil.getPasswordEncoder().encode(request.getPassword()), request.getEmail(),
+        Role.valueOf(request.getRole())));
   }
 
   @Override

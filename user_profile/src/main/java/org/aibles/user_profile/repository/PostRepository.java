@@ -8,11 +8,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostRepository extends JpaRepository<Post, String> {
 
-  Boolean existsByUserProfileIdAndId(String userProfileId, String id);
+  boolean existsByUserProfileIdAndId(String userProfileId, String id);
 
   void deleteAllByUserProfileId(String userProfileId);
 
   List<Post> findAllByUserProfileId(String id);
 
-  Boolean existsByTitle(String title);
+  boolean existsByTitle(String title);
 }

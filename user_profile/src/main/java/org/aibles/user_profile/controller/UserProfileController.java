@@ -5,7 +5,6 @@ import static org.aibles.user_profile.constant.UserProfileApiConstant.BaseUrl.US
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aibles.user_profile.dto.Response;
-import org.aibles.user_profile.dto.request.UserProfileCreateRequest;
 import org.aibles.user_profile.dto.request.UserProfileUpdateRequest;
 import org.aibles.user_profile.facade.UserProfileFacadeService;
 import org.aibles.user_profile.service.UserProfileService;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -29,14 +27,6 @@ public class UserProfileController {
 
   private final UserProfileService service;
   private final UserProfileFacadeService userProfileFacadeService;
-
-  @PostMapping()
-  @ResponseStatus(HttpStatus.OK)
-  public Response create(@Validated @RequestBody UserProfileCreateRequest request) {
-    log.info("(create)request: {}", request);
-    request.validateGender();
-    return Response.of(HttpStatus.OK.value(), service.create(request));
-  }
 
   @GetMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)

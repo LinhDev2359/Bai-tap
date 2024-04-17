@@ -16,3 +16,15 @@ application:
     refresh_token:
       jwt_secret: ZFDF8GJS4ADFA64ASDeimY
       life_time: 3000000
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+
+server:
+  port: 8080

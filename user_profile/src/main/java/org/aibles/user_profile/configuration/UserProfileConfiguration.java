@@ -1,5 +1,6 @@
 package org.aibles.user_profile.configuration;
 
+import java.util.Random;
 import org.aibles.user_profile.error_handle.AuthenticationErrorHandle;
 import org.aibles.user_profile.facade.AuthFacadeService;
 import org.aibles.user_profile.facade.ImageFacadeService;
@@ -13,7 +14,9 @@ import org.aibles.user_profile.repository.ImageRepository;
 import org.aibles.user_profile.repository.PostRepository;
 import org.aibles.user_profile.repository.UserProfileRepository;
 import org.aibles.user_profile.service.AuthTokenService;
+import org.aibles.user_profile.service.EmailService;
 import org.aibles.user_profile.service.ImageService;
+import org.aibles.user_profile.service.OtpService;
 import org.aibles.user_profile.service.PostService;
 import org.aibles.user_profile.service.UserProfileService;
 import org.aibles.user_profile.service.impl.AuthTokenServiceImpl;
@@ -82,7 +85,7 @@ public class UserProfileConfiguration {
   }
 
   @Bean
-  public AuthFacadeService authFacadeService(UserProfileService userProfileService, AuthTokenService authTokenService) {
-    return new AuthFacadeServiceImpl(userProfileService, authTokenService, accessTokenLifeTime, refreshTokenLifeTime);
+  public AuthFacadeService authFacadeService(UserProfileService userProfileService, AuthTokenService authTokenService, OtpService otpService, EmailService emailService) {
+    return new AuthFacadeServiceImpl(userProfileService, authTokenService, accessTokenLifeTime, refreshTokenLifeTime, otpService, emailService);
   }
 }

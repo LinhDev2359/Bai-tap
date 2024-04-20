@@ -9,6 +9,7 @@ import org.aibles.user_profile.entity.UserProfile;
 
 public interface UserProfileService {
 
+  void activeAccount(String email);
   void register(RegisterRequest request);
   UserProfileResponse getById(String id);
   List<UserProfileResponse> getAll();
@@ -16,4 +17,5 @@ public interface UserProfileService {
   UserProfileResponse updateById(String id, UserProfileUpdateRequest request);
   UserProfile findByUsername(String username);
   UserProfile findById(String id);
+  void validateEmail(String email);
 }

@@ -23,6 +23,7 @@ public class UserProfile extends BaseEntity {
   private String address;
   @Enumerated(EnumType.STRING)
   private Role role;
+  private Boolean isActivated;
 
   public UserProfile() {
   }
@@ -120,6 +121,14 @@ public class UserProfile extends BaseEntity {
     this.role = role;
   }
 
+  public Boolean getActivated() {
+    return isActivated;
+  }
+
+  public void setActivated(Boolean activated) {
+    isActivated = activated;
+  }
+
   public static UserProfile of(String username, String password, String firstName, String lastName,
       Gender gender, Integer dateOfBirth, String phone, String email, String address) {
     UserProfile userProfile = new UserProfile();
@@ -141,6 +150,7 @@ public class UserProfile extends BaseEntity {
     userProfile.setPassword(password);
     userProfile.setEmail(email);
     userProfile.setRole(role);
+    userProfile.setActivated(false);
     return userProfile;
   }
 }

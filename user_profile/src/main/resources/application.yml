@@ -8,6 +8,23 @@ spring:
   application:
     name: user-profile-service
 
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: nhoquenroi2002@gmail.com
+    password: qpxcpvjevxcieruz
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+    test-connection: false
+    template:
+      name: mail-template.html
+
 application:
   authentication:
     access_token:
@@ -16,3 +33,15 @@ application:
     refresh_token:
       jwt_secret: ZFDF8GJS4ADFA64ASDeimY
       life_time: 3000000
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+
+server:
+  port: 8080

@@ -1,5 +1,6 @@
 package org.aibles.user_profile.controller;
 
+import static org.aibles.user_profile.constant.UserProfileApiConstant.BaseUrl.POST_URL;
 import static org.aibles.user_profile.constant.UserProfileApiConstant.BaseUrl.USER_PROFILE_URL;
 import static org.aibles.user_profile.constant.UserProfileApiConstant.ResourceConstant.POST;
 import static org.aibles.user_profile.util.SecurityService.getUserId;
@@ -25,34 +26,34 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping(USER_PROFILE_URL)
+@RequestMapping(POST_URL)
 public class PostController {
 
 
   private final PostFacadeService service;
 
-  @PostMapping("/" + POST)
+  @PostMapping()
   @ResponseStatus(HttpStatus.OK)
   public Response create(@Validated @RequestBody PostCreateRequest request) {
     log.info("(create)request: {}", request);
     return Response.of(HttpStatus.OK.value(), service.create(getUserId(), request));
   }
 
-  @GetMapping("/" + POST + "/{id}")
+  @GetMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
   public Response getById(@Validated @PathVariable("id") String id) {
     log.info("(getById)id: {}", id);
     return Response.of(HttpStatus.OK.value(), service.getById(getUserId(), id));
   }
 
-  @GetMapping("/" + POST)
+  @GetMapping()
   @ResponseStatus(HttpStatus.OK)
   public Response getAll() {
     log.info("(getAll)");
     return Response.of(HttpStatus.OK.value(), service.getAll(getUserId()));
   }
 
-  @DeleteMapping("/" + POST + "/{id}")
+  @DeleteMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
   public Response deleteById(@Validated @PathVariable("id") String id) {
     log.info("(deleteById)id: {}", id);
@@ -61,7 +62,7 @@ public class PostController {
   }
 
 
-  @PatchMapping("/" + POST + "/{id}")
+  @PatchMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
   public Response updateById(@Validated @PathVariable("id") String id,
       @Validated @RequestBody PostUpdateRequest request) {

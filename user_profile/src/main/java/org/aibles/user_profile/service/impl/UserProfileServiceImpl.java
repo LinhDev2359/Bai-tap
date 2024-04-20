@@ -6,11 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.aibles.user_profile.constant.Gender;
 import org.aibles.user_profile.constant.Role;
 import org.aibles.user_profile.dto.request.RegisterRequest;
-import org.aibles.user_profile.dto.request.UserProfileCreateRequest;
 import org.aibles.user_profile.dto.request.UserProfileUpdateRequest;
 import org.aibles.user_profile.dto.response.UserProfileResponse;
 import org.aibles.user_profile.entity.UserProfile;
-import org.aibles.user_profile.exception.EmailAlreadyExistedException;
+import org.aibles.user_profile.exception.EmailNotFoundException;
 import org.aibles.user_profile.exception.UserProfileIdNotFoundException;
 import org.aibles.user_profile.exception.UsernameAlreadyExistedException;
 import org.aibles.user_profile.exception.UsernameNotFoundException;
@@ -26,12 +25,19 @@ public class UserProfileServiceImpl implements UserProfileService {
   private final UserProfileRepository repository;
 
   @Override
+  public void activeAccount(String email) {
+    log.info("(activeAccount)email: {}", email);
+    var userprofile = repository.findByEmail(email);
+    userprofile.setActivated(true);
+  }
+
+  @Override
   @Transactional
   public void register(RegisterRequest request) {
     log.info("(register)request: {}", request);
     if (repository.existsByEmail(request.getEmail())) {
       log.error("(register)email: {}", request.getEmail());
-      throw new EmailAlreadyExistedException(request.getEmail());
+      throw new EmailNotFoundException(request.getEmail());
     }
     if (repository.existsByUsername(request.getUsername())) {
       log.error("(register)username: {}", request.getUsername());
@@ -84,7 +90,10 @@ public class UserProfileServiceImpl implements UserProfileService {
         log.error("(updateById)id: {}", id);
         throw new UserProfileIdNotFoundException(id);
       });
-    validateEmail(request.getEmail());
+    if (repository.existsByEmail(request.getEmail())) {
+      log.error("(updateById)email: {}", request.getEmail());
+      throw new EmailNotFoundException(request.getEmail());
+    }
     userProfile.setFirstName(request.getFirstName());
     userProfile.setLastName(request.getLastName());
     userProfile.setGender(Gender.valueOf(request.getGender()));
@@ -119,11 +128,13 @@ public class UserProfileServiceImpl implements UserProfileService {
         });
   }
 
-  private void validateEmail(String email) {
+  @Override
+  @Transactional
+  public void validateEmail(String email) {
     log.info("(validateEmail)email: {}", email);
-    if(repository.existsByEmail(email)) {
+    if(!repository.existsByEmail(email)) {
       log.error("(validateEmail)email: {}", email);
-      throw new EmailAlreadyExistedException(email);
+      throw new EmailNotFoundException(email);
     }
   }
 }

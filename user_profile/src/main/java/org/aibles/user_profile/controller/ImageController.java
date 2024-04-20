@@ -1,5 +1,6 @@
 package org.aibles.user_profile.controller;
 
+import static org.aibles.user_profile.constant.UserProfileApiConstant.BaseUrl.POST_URL;
 import static org.aibles.user_profile.constant.UserProfileApiConstant.BaseUrl.USER_PROFILE_URL;
 import static org.aibles.user_profile.constant.UserProfileApiConstant.ResourceConstant.IMAGE;
 import static org.aibles.user_profile.constant.UserProfileApiConstant.ResourceConstant.POST;
@@ -28,12 +29,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping(USER_PROFILE_URL)
+@RequestMapping(POST_URL)
 public class ImageController {
 
   private final ImageFacadeService service;
 
-  @PostMapping("/" + POST + "/{postId}" + IMAGE)
+  @PostMapping("/{postId}" + IMAGE)
   @ResponseStatus(HttpStatus.OK)
   public Response create(@Validated @PathVariable("postId") String postId,
       @Validated @RequestBody ImageCreateRequest request) {
@@ -41,7 +42,7 @@ public class ImageController {
     return Response.of(HttpStatus.OK.value(), service.create(getUserId(), postId, request));
   }
 
-  @GetMapping("/" + POST + "/{postId}" + IMAGE + "/{id}")
+  @GetMapping("/{postId}" + IMAGE + "/{id}")
   @ResponseStatus(HttpStatus.OK)
   public Response getById(@Validated @PathVariable("postId") String postId,
       @Validated @PathVariable("id") String id) {
@@ -49,14 +50,14 @@ public class ImageController {
     return Response.of(HttpStatus.OK.value(), service.getById(getUserId(), postId, id));
   }
 
-  @GetMapping("/" + POST + "/{postId}" + IMAGE)
+  @GetMapping("/{postId}" + IMAGE)
   @ResponseStatus(HttpStatus.OK)
   public Response getAll(@Validated @PathVariable("postId") String postId) {
     log.info("(getAll)userProfileId: {}, postId: {}", getUserId(), postId);
     return Response.of(HttpStatus.OK.value(), service.getAll(getUserId(), postId));
   }
 
-  @DeleteMapping("/" + POST + "/{postId}" + IMAGE + "/{id}")
+  @DeleteMapping("/{postId}" + IMAGE + "/{id}")
   @ResponseStatus(HttpStatus.OK)
   public Response deleteById(@Validated @PathVariable("postId") String postId,
       @Validated @PathVariable("id") String id) {
@@ -66,7 +67,7 @@ public class ImageController {
   }
 
 
-  @PatchMapping("/{userProfileId}" + POST + "/{postId}" + IMAGE + "/{id}")
+  @PatchMapping("/{postId}" + IMAGE + "/{id}")
   @ResponseStatus(HttpStatus.OK)
   public Response updateById(@Validated @PathVariable("postId") String postId,
       @Validated @PathVariable("id") String id,

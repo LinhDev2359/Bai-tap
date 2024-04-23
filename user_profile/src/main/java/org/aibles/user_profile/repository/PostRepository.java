@@ -3,10 +3,11 @@ package org.aibles.user_profile.repository;
 import java.util.List;
 import org.aibles.user_profile.entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PostRepository extends JpaRepository<Post, String> {
+public interface PostRepository extends JpaRepository<Post, String>, JpaSpecificationExecutor<Post> {
 
   boolean existsByUserProfileIdAndId(String userProfileId, String id);
 

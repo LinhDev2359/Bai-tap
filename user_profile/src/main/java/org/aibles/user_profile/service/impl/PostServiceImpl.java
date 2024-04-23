@@ -1,6 +1,8 @@
 package org.aibles.user_profile.service.impl;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aibles.user_profile.dto.request.PostCreateRequest;
@@ -10,8 +12,10 @@ import org.aibles.user_profile.entity.Post;
 import org.aibles.user_profile.exception.PostIdNotFoundException;
 import org.aibles.user_profile.exception.TitleAlreadyExistedException;
 import org.aibles.user_profile.exception.UserProfileIdNotInThePostException;
+import org.aibles.user_profile.filter.GenericSpecification;
 import org.aibles.user_profile.repository.PostRepository;
 import org.aibles.user_profile.service.PostService;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
@@ -111,6 +115,21 @@ public class PostServiceImpl implements PostService {
   public List<Post> findAllByUserProfileId(String userProfileId) {
     log.info("(findAllByUserProfileId)userProfileId: {}", userProfileId);
     return repository.findAllByUserProfileId(userProfileId);
+  }
+
+  @Override
+  @Transactional
+  public List<Post> findByCriteria(Map<String, String> allParams) {
+    log.info("(findByCriteria)allParams: {}", allParams);
+    List<Specification> specs = allParams.entrySet().stream()
+        .map(entry -> new GenericSpecification<>(entry.getKey(), entry.getValue()))
+        .collect(Collectors.toList());
+
+    Specification combinedSpec = specs.stream()
+        .reduce(Specification::and)
+        .orElse(null);
+
+    return repository.findAll(combinedSpec);
   }
 
   private void validateTitle(String title) {

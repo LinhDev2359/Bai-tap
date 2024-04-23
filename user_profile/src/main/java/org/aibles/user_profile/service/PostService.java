@@ -17,5 +17,5 @@ public interface PostService {
   void existsByUserProfileIdAndId(String userProfileId, String id);
   void deleteAllByUserProfileId(String userProfileId);
   List<Post> findAllByUserProfileId(String userProfileId);
-  List<Post> findByCriteria(Map<String, String> allParams);
+  List<Post> findByCriteria(Map<String, String> paramsSearch);
 }

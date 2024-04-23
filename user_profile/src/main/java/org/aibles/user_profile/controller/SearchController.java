@@ -21,8 +21,8 @@ public class SearchController {
   private final PostService postService;
 
   @GetMapping("/posts")
-  public Response searchPostsParam(@RequestParam Map<String, String> allParams) {
-    log.info("(searchPosts)allParams: {}", allParams);
-    return Response.of(HttpStatus.OK.value(), postService.findByCriteria(allParams));
+  public Response searchPostsParam(@RequestParam Map<String, String> paramsSearch) {
+    log.info("(searchPosts)paramsSearch: {}", paramsSearch);
+    return Response.of(HttpStatus.OK.value(), postService.findByCriteria(paramsSearch));
   }
 }

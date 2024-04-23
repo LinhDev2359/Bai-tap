@@ -119,9 +119,9 @@ public class PostServiceImpl implements PostService {
 
   @Override
   @Transactional
-  public List<Post> findByCriteria(Map<String, String> allParams) {
-    log.info("(findByCriteria)allParams: {}", allParams);
-    List<Specification> specs = allParams.entrySet().stream()
+  public List<Post> findByCriteria(Map<String, String> paramsSearch) {
+    log.info("(findByCriteria)paramsSearch: {}", paramsSearch);
+    List<Specification> specs = paramsSearch.entrySet().stream()
         .map(entry -> new GenericSpecification<>(entry.getKey(), entry.getValue()))
         .collect(Collectors.toList());
 

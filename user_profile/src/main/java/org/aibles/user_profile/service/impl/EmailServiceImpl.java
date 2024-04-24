@@ -39,7 +39,7 @@ public class EmailServiceImpl implements EmailService {
   }
 
   @Override
-  public void sendd(String subject, String to, String content, List<String> attachments) {
+  public void send(String subject, String to, String content, List<String> attachments) {
     log.info("(send)subject: {}, to: {}, content: {}, attachments: {}", subject, to, content, attachments);
     try {
       var message = emailSender.createMimeMessage();

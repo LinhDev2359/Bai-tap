@@ -10,6 +10,6 @@ public interface EmailService {
   void send(String subject, String to, String template, Map<String, Object> properties);
 
   @Async
-  void sendd(String subject, String to, String content, List<String> attachments);
+  void send(String subject, String to, String content, List<String> attachments);
 
 }

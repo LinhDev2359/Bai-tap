@@ -33,6 +33,7 @@ public class WebSecurityConfiguration {
             .requestMatchers("/swagger-ui/**").permitAll()
             .requestMatchers("/v3/api-docs/**").permitAll()
             .requestMatchers("/webjars/**").permitAll()
+            .requestMatchers( "/api/v1/search/**").permitAll()
             .requestMatchers("/api/v1/user-profiles/**", "/api/v1/posts/**", "/api/v1/images/**").hasRole("USER")
             .requestMatchers("/api/v1/user-profiles/{id}", "/api/v1/posts/**", "/api/v1/images/**").hasRole("CUSTOMER")
             .anyRequest().authenticated()

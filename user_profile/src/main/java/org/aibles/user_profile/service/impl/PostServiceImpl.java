@@ -132,6 +132,16 @@ public class PostServiceImpl implements PostService {
     return repository.findAll(combinedSpec);
   }
 
+  @Override
+  @Transactional
+  public void validateExist(String postId) {
+    log.info("(validateExist)postId : {}", postId);
+    if (!repository.existsById(postId)) {
+      log.error("(validateExist)postId : {}", postId);
+      throw new PostIdNotFoundException(postId);
+    }
+  }
+
   private void validateTitle(String title) {
     log.info("(validateTitle)title: {}", title);
     if(repository.existsByTitle(title)) {

@@ -1,6 +1,7 @@
 package org.aibles.user_profile.service;
 
 import java.util.List;
+import java.util.Map;
 import org.aibles.user_profile.dto.request.PostCreateRequest;
 import org.aibles.user_profile.dto.request.PostUpdateRequest;
 import org.aibles.user_profile.dto.response.PostResponse;
@@ -16,4 +17,5 @@ public interface PostService {
   void existsByUserProfileIdAndId(String userProfileId, String id);
   void deleteAllByUserProfileId(String userProfileId);
   List<Post> findAllByUserProfileId(String userProfileId);
+  List<Post> findByCriteria(Map<String, String> paramsSearch);
 }

@@ -109,5 +109,33 @@
       referencedTableName="post" referencedColumnNames="id"/>
   </changeSet>
 
+  <changeSet id="20240424-0910-add-table-reaction" author="YaLynk" >
+    <createTable tableName="reaction">
+      <column name="id" type="varchar(255)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="type" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="post_id" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="user_profile_id" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_at" type="bigint">
+        <constraints nullable="true"/>
+      </column>
+      <column name="updated_at" type="bigint">
+        <constraints nullable="true"/>
+      </column>
+    </createTable>
+    <addForeignKeyConstraint baseTableName="reaction" baseColumnNames="user_profile_id"
+      constraintName="FK_reaction_user_profile"
+      referencedTableName="user_profile" referencedColumnNames="id"/>
+    <addForeignKeyConstraint baseTableName="reaction" baseColumnNames="post_id"
+      constraintName="FK_reaction_post"
+      referencedTableName="post" referencedColumnNames="id"/>
+  </changeSet>
 
 </databaseChangeLog>

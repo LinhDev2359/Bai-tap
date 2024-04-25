@@ -19,6 +19,7 @@ public class UserProfileApiConstant {
     public static final String IMAGE = "/images";
     public static final String AUTH = "/account";
     public static final String REACTION = "/reactions";
+    public static final String COMMENT = "/comments";
   }
 
   public static class BaseUrl {

@@ -35,11 +35,11 @@ public class ImageController {
   private final ImageFacadeService service;
 
   @PostMapping("/{postId}" + IMAGE)
-  @ResponseStatus(HttpStatus.OK)
+  @ResponseStatus(HttpStatus.CREATED)
   public Response create(@Validated @PathVariable("postId") String postId,
       @Validated @RequestBody ImageCreateRequest request) {
     log.info("(create)userProfileId: {}, postId: {}, request: {}", getUserId(), postId, request);
-    return Response.of(HttpStatus.OK.value(), service.create(getUserId(), postId, request));
+    return Response.of(HttpStatus.CREATED.value(), service.create(getUserId(), postId, request));
   }
 
   @GetMapping("/{postId}" + IMAGE + "/{id}")

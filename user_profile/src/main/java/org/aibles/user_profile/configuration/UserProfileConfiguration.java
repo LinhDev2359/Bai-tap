@@ -3,20 +3,24 @@ package org.aibles.user_profile.configuration;
 import java.util.Random;
 import org.aibles.user_profile.error_handle.AuthenticationErrorHandle;
 import org.aibles.user_profile.facade.AuthFacadeService;
+import org.aibles.user_profile.facade.CommentFacadeService;
 import org.aibles.user_profile.facade.ImageFacadeService;
 import org.aibles.user_profile.facade.PostFacadeService;
 import org.aibles.user_profile.facade.ReactionFacadeService;
 import org.aibles.user_profile.facade.UserProfileFacadeService;
 import org.aibles.user_profile.facade.impl.AuthFacadeServiceImpl;
+import org.aibles.user_profile.facade.impl.CommentFacadeServiceImpl;
 import org.aibles.user_profile.facade.impl.ImageFacadeServiceImpl;
 import org.aibles.user_profile.facade.impl.PostFacadeServiceImpl;
 import org.aibles.user_profile.facade.impl.ReactionFacadeServiceImpl;
 import org.aibles.user_profile.facade.impl.UserProfileFacadeServiceImpl;
+import org.aibles.user_profile.repository.CommentRepository;
 import org.aibles.user_profile.repository.ImageRepository;
 import org.aibles.user_profile.repository.PostRepository;
 import org.aibles.user_profile.repository.ReactionRepository;
 import org.aibles.user_profile.repository.UserProfileRepository;
 import org.aibles.user_profile.service.AuthTokenService;
+import org.aibles.user_profile.service.CommentService;
 import org.aibles.user_profile.service.EmailService;
 import org.aibles.user_profile.service.ImageService;
 import org.aibles.user_profile.service.OtpService;
@@ -24,6 +28,7 @@ import org.aibles.user_profile.service.PostService;
 import org.aibles.user_profile.service.ReactionService;
 import org.aibles.user_profile.service.UserProfileService;
 import org.aibles.user_profile.service.impl.AuthTokenServiceImpl;
+import org.aibles.user_profile.service.impl.CommentServiceImpl;
 import org.aibles.user_profile.service.impl.ImageServiceImpl;
 import org.aibles.user_profile.service.impl.PostServiceImpl;
 import org.aibles.user_profile.service.impl.ReactionServiceImpl;
@@ -102,5 +107,15 @@ public class UserProfileConfiguration {
   @Bean
   public ReactionFacadeService reactionFacadeService(ReactionService reactionService, PostService postService) {
     return new ReactionFacadeServiceImpl(reactionService, postService);
+  }
+
+  @Bean
+  public CommentService commentService(CommentRepository commentRepository) {
+    return new CommentServiceImpl(commentRepository);
+  }
+
+  @Bean
+  public CommentFacadeService commentFacadeService(CommentService commentService, PostService postService) {
+    return new CommentFacadeServiceImpl(commentService, postService);
   }
 }

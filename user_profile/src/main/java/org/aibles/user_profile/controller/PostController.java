@@ -33,10 +33,10 @@ public class PostController {
   private final PostFacadeService service;
 
   @PostMapping()
-  @ResponseStatus(HttpStatus.OK)
+  @ResponseStatus(HttpStatus.CREATED)
   public Response create(@Validated @RequestBody PostCreateRequest request) {
     log.info("(create)request: {}", request);
-    return Response.of(HttpStatus.OK.value(), service.create(getUserId(), request));
+    return Response.of(HttpStatus.CREATED.value(), service.create(getUserId(), request));
   }
 
   @GetMapping("/{id}")

@@ -13,4 +13,5 @@ public interface PostFacadeService {
   PostResponse updateById(String id, String userProfileId, PostUpdateRequest request);
   void deleteById(String userProfileId, String id);
   void deleteAllByUserProfileId(String userProfileId);
+  PostResponse sharePost(String userProfileId, String postId, PostCreateRequest request);
 }

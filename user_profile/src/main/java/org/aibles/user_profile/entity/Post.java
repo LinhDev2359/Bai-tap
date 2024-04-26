@@ -12,16 +12,20 @@ public class Post extends BaseEntity {
   private String content;
   private String author;
   private String category;
+  private String parentId;
+  private String authorId;
   private String userProfileId;
 
   public Post() {
   }
 
-  public Post(String title, String content, String author, String category, String userProfileId) {
+  public Post(String title, String content, String author, String category, String parentId, String authorId, String userProfileId) {
     this.title = title;
     this.content = content;
     this.author = author;
     this.category = category;
+    this.parentId = parentId;
+    this.authorId = authorId;
     this.userProfileId = userProfileId;
   }
 
@@ -65,12 +69,40 @@ public class Post extends BaseEntity {
     this.userProfileId = userProfileId;
   }
 
+  public String getParentId() {
+    return parentId;
+  }
+
+  public void setParentId(String parentId) {
+    this.parentId = parentId;
+  }
+
+  public String getAuthorId() {
+    return authorId;
+  }
+
+  public void setAuthorId(String authorId) {
+    this.authorId = authorId;
+  }
+
   public static Post of(String title, String content, String author, String category, String userProfileId) {
     Post post = new Post();
     post.setTitle(title);
     post.setContent(content);
     post.setAuthor(author);
     post.setCategory(category);
+    post.setUserProfileId(userProfileId);
+    return post;
+  }
+
+  public static Post of(String title, String content, String author, String category, String parentId, String authorId, String userProfileId) {
+    Post post = new Post();
+    post.setTitle(title);
+    post.setContent(content);
+    post.setAuthor(author);
+    post.setCategory(category);
+    post.setParentId(parentId);
+    post.setAuthorId(authorId);
     post.setUserProfileId(userProfileId);
     return post;
   }

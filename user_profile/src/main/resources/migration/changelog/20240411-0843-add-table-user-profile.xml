@@ -71,6 +71,12 @@
       <column name="category" type="varchar(100)">
         <constraints nullable="false"/>
       </column>
+      <column name="parent_id" type="varchar(255)">
+        <constraints nullable="true"/>
+      </column>
+      <column name="author_id" type="varchar(255)">
+        <constraints nullable="true"/>
+      </column>
       <column name="user_profile_id" type="varchar(255)">
         <constraints nullable="false"/>
       </column>

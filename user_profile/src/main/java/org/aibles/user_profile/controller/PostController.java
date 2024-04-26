@@ -69,4 +69,12 @@ public class PostController {
     log.info("(updateById)id: {}, request: {}", id, request);
     return Response.of(HttpStatus.OK.value(), service.updateById(id, getUserId(), request));
   }
+
+  @PostMapping("/{id}")
+  @ResponseStatus(HttpStatus.CREATED)
+  public Response sharePost(@Validated @PathVariable("id") String id,
+      @Validated @RequestBody PostUpdateRequest request) {
+    log.info("(sharePost)id: {}, request: {}", id, request);
+    return Response.of(HttpStatus.CREATED.value(), service.sharePost(getUserId(), id, request));
+  }
 }

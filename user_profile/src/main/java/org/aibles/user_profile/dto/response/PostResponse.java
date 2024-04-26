@@ -11,6 +11,8 @@ public class PostResponse {
   private String content;
   private String author;
   private String category;
+  private String parentId;
+  private String authorId;
   private String userProfileId;
   private Long createdAt;
   private Long updatedAt;
@@ -79,6 +81,22 @@ public class PostResponse {
     this.updatedAt = updatedAt;
   }
 
+  public String getParentId() {
+    return parentId;
+  }
+
+  public void setParentId(String parentId) {
+    this.parentId = parentId;
+  }
+
+  public String getAuthorId() {
+    return authorId;
+  }
+
+  public void setAuthorId(String authorId) {
+    this.authorId = authorId;
+  }
+
   public static PostResponse from(Post post) {
     PostResponse response = new PostResponse();
     response.setId(post.getId());
@@ -86,6 +104,21 @@ public class PostResponse {
     response.setContent(post.getContent());
     response.setAuthor(post.getAuthor());
     response.setCategory(post.getCategory());
+    response.setUserProfileId(post.getUserProfileId());
+    response.setCreatedAt(post.getCreatedAt());
+    response.setUpdatedAt(post.getUpdatedAt());
+    return response;
+  }
+
+  public static PostResponse fromShare(Post post) {
+    PostResponse response = new PostResponse();
+    response.setId(post.getId());
+    response.setTitle(post.getTitle());
+    response.setContent(post.getContent());
+    response.setAuthor(post.getAuthor());
+    response.setCategory(post.getCategory());
+    response.setParentId(post.getParentId());
+    response.setAuthorId(post.getAuthorId());
     response.setUserProfileId(post.getUserProfileId());
     response.setCreatedAt(post.getCreatedAt());
     response.setUpdatedAt(post.getUpdatedAt());

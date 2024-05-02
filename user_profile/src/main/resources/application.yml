@@ -25,6 +25,13 @@ spring:
     template:
       name: mail-template.html
 
+
+  servlet:
+    multipart:
+      enabled : true
+      max-file-size: 30MB
+      max-request-size: 30MB
+
 application:
   authentication:
     access_token:
@@ -45,3 +52,6 @@ springdoc:
 
 server:
   port: 8080
+
+image:
+  value: E:\\anh

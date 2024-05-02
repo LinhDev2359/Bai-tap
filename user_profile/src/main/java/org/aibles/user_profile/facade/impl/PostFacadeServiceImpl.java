@@ -25,8 +25,9 @@ public class PostFacadeServiceImpl implements PostFacadeService {
   @Transactional
   public PostResponse create(String userProfileId, PostCreateRequest request) {
     log.info("(create)userProfileId: {}request: {}", userProfileId, request);
-    userProfileService.getById(userProfileId);
-    return postService.create(userProfileId, request);
+    var userProfile = userProfileService.getById(userProfileId);
+    String name = userProfile.getFirstName().concat(" ").concat(userProfile.getLastName());
+    return postService.create(userProfileId, request, name);
   }
 
   @Override
@@ -49,8 +50,9 @@ public class PostFacadeServiceImpl implements PostFacadeService {
   @Transactional
   public PostResponse updateById(String id, String userProfileId, PostUpdateRequest request) {
     log.info("(updateById)id: {}, userProfileId: {} request: {}", id, userProfileId, request);
-    userProfileService.getById(userProfileId);
-    return postService.updateById(id, userProfileId, request);
+    var userProfile = userProfileService.getById(userProfileId);
+    String name = userProfile.getFirstName().concat(" ").concat(userProfile.getLastName());
+    return postService.updateById(id, userProfileId, request, name);
   }
 
   @Override
@@ -72,4 +74,14 @@ public class PostFacadeServiceImpl implements PostFacadeService {
     }
     postService.deleteAllByUserProfileId(userProfileId);
   }
+
+  @Override
+  @Transactional
+  public PostResponse sharePost(String userProfileId, String postId, PostCreateRequest request) {
+    log.info("(sharePost)userProfileId: {}, postId : {}, request: {}", userProfileId, postId, request);
+    var userProfile = userProfileService.getById(userProfileId);
+    String name = userProfile.getFirstName().concat(" ").concat(userProfile.getLastName());
+    return postService.sharePost(userProfileId, postId, request, name);
+  }
+
 }

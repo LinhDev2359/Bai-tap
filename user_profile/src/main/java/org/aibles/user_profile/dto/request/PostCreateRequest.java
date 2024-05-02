@@ -8,8 +8,6 @@ public class PostCreateRequest {
   private String title;
   @NotBlank(message = "Content cannot blank")
   private String content;
-  @NotBlank(message = "Author cannot blank")
-  private String author;
   @NotBlank(message = "Category cannot blank")
   private String category;
 
@@ -27,14 +25,6 @@ public class PostCreateRequest {
 
   public void setContent(String content) {
     this.content = content;
-  }
-
-  public String getAuthor() {
-    return author;
-  }
-
-  public void setAuthor(String author) {
-    this.author = author;
   }
 
   public String getCategory() {

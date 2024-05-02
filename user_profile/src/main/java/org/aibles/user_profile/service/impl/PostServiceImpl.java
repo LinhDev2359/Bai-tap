@@ -26,15 +26,15 @@ public class PostServiceImpl implements PostService {
 
   @Override
   @Transactional
-  public PostResponse create(String userProfileId, PostCreateRequest request) {
-    log.info("(create)userProfileId: {}request: {}", userProfileId, request);
+  public PostResponse create(String userProfileId, PostCreateRequest request, String author) {
+    log.info("(create)userProfileId: {}request: {}, author: {}", userProfileId, request, author);
     validateTitle(request.getTitle());
     return PostResponse.from(
         repository.save(
             Post.of(
                 request.getTitle(),
                 request.getContent(),
-                request.getAuthor(),
+                author,
                 request.getCategory(),
                 userProfileId
             )
@@ -64,8 +64,8 @@ public class PostServiceImpl implements PostService {
 
   @Override
   @Transactional
-  public PostResponse updateById(String id, String userProfileId, PostUpdateRequest request) {
-    log.info("(updateById)id: {}, userProfileId: {} request: {}", id, userProfileId, request);
+  public PostResponse updateById(String id, String userProfileId, PostUpdateRequest request, String author) {
+    log.info("(updateById)id: {}, userProfileId: {} request: {}, author: {}", id, userProfileId, request, author);
     validateTitle(request.getTitle());
     var post = repository
         .findById(id)
@@ -75,7 +75,7 @@ public class PostServiceImpl implements PostService {
         });
     post.setTitle(request.getTitle());
     post.setContent(request.getContent());
-    post.setAuthor(request.getAuthor());
+    post.setAuthor(author);
     post.setCategory(request.getCategory());
     post.setUserProfileId(userProfileId);
     return PostResponse.from(repository.save(post));
@@ -140,6 +140,28 @@ public class PostServiceImpl implements PostService {
       log.error("(validateExist)postId : {}", postId);
       throw new PostIdNotFoundException(postId);
     }
+  }
+
+  @Override
+  @Transactional
+  public PostResponse sharePost(String userProfileId, String postId, PostCreateRequest request, String author) {
+    log.info("(sharePost)userProfileId: {}, postId : {}, request: {}, author: {}", userProfileId, postId, request, author);
+    var post = repository
+        .findById(postId)
+        .orElseThrow(() -> {
+          log.error("(sharePost)userProfileId: {}, postId : {}, request: {}, author: {}", userProfileId, postId, request, author);
+          throw new PostIdNotFoundException(postId);
+        });
+    return PostResponse
+        .fromShare(repository
+            .save(Post.of(
+                request.getTitle(),
+                request.getContent(),
+                author,
+                request.getCategory(),
+                postId,
+                post.getUserProfileId(),
+                userProfileId)));
   }
 
   private void validateTitle(String title) {

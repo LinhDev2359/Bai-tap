@@ -9,14 +9,15 @@ import org.aibles.user_profile.entity.Post;
 
 public interface PostService {
 
-  PostResponse create(String userProfileId, PostCreateRequest request);
+  PostResponse create(String userProfileId, PostCreateRequest request, String author);
   PostResponse getById(String id);
   List<PostResponse> getAll();
-  PostResponse updateById(String id, String userProfileId, PostUpdateRequest request);
+  PostResponse updateById(String id, String userProfileId, PostUpdateRequest request, String author);
   void deleteById(String id);
   void existsByUserProfileIdAndId(String userProfileId, String id);
   void deleteAllByUserProfileId(String userProfileId);
   List<Post> findAllByUserProfileId(String userProfileId);
   List<Post> findByCriteria(Map<String, String> paramsSearch);
   void validateExist(String postId);
+  PostResponse sharePost(String userProfileId, String postId, PostCreateRequest request, String author);
 }

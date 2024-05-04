@@ -35,7 +35,7 @@ public class UserProfileController {
   @ResponseStatus(HttpStatus.OK)
   public UserProfileResponse getById() {
     log.info("(getById)id: {}", getUserId());
-    return service.getById(getUserId()));
+    return service.getById(getUserId());
   }
 
   @GetMapping()

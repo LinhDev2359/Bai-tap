@@ -5,11 +5,14 @@ import static org.aibles.user_profile.constant.UserProfileApiConstant.BaseUrl.US
 import static org.aibles.user_profile.constant.UserProfileApiConstant.ResourceConstant.POST;
 import static org.aibles.user_profile.util.SecurityService.getUserId;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aibles.user_profile.dto.Response;
 import org.aibles.user_profile.dto.request.PostCreateRequest;
 import org.aibles.user_profile.dto.request.PostUpdateRequest;
+import org.aibles.user_profile.dto.response.PostImageResponse;
+import org.aibles.user_profile.dto.response.PostResponse;
 import org.aibles.user_profile.facade.PostFacadeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,57 +40,57 @@ public class PostController {
 
   @PostMapping()
   @ResponseStatus(HttpStatus.CREATED)
-  public Response create(@Validated @RequestBody PostCreateRequest request) {
+  public PostResponse create(@Validated @RequestBody PostCreateRequest request) {
     log.info("(create)request: {}", request);
-    return Response.of(HttpStatus.CREATED.value(), service.create(getUserId(), request));
+    return service.create(getUserId(), request);
   }
 
   @GetMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public Response getById(@Validated @PathVariable("id") String id) {
+  public PostResponse getById(@Validated @PathVariable("id") String id) {
     log.info("(getById)id: {}", id);
-    return Response.of(HttpStatus.OK.value(), service.getById(getUserId(), id));
+    return service.getById(getUserId(), id);
   }
 
   @GetMapping()
   @ResponseStatus(HttpStatus.OK)
-  public Response getAll() {
+  public List<PostResponse> getAll() {
     log.info("(getAll)");
-    return Response.of(HttpStatus.OK.value(), service.getAll(getUserId()));
+    return service.getAll(getUserId());
   }
 
   @DeleteMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public Response deleteById(@Validated @PathVariable("id") String id) {
+  public String deleteById(@Validated @PathVariable("id") String id) {
     log.info("(deleteById)id: {}", id);
     service.deleteById(getUserId(), id);
-    return Response.of(HttpStatus.OK.value(), "DELETE SUCCESS!!!");
+    return "DELETE SUCCESS!!!";
   }
 
 
   @PatchMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public Response updateById(@Validated @PathVariable("id") String id,
+  public PostResponse updateById(@Validated @PathVariable("id") String id,
       @Validated @RequestBody PostUpdateRequest request) {
     log.info("(updateById)id: {}, request: {}", id, request);
-    return Response.of(HttpStatus.OK.value(), service.updateById(id, getUserId(), request));
+    return service.updateById(id, getUserId(), request);
   }
 
   @PostMapping("/{id}")
   @ResponseStatus(HttpStatus.CREATED)
-  public Response sharePost(@Validated @PathVariable("id") String id,
+  public PostResponse sharePost(@Validated @PathVariable("id") String id,
       @Validated @RequestBody PostUpdateRequest request) {
     log.info("(sharePost)id: {}, request: {}", id, request);
-    return Response.of(HttpStatus.CREATED.value(), service.sharePost(getUserId(), id, request));
+    return service.sharePost(getUserId(), id, request);
   }
 
   @PostMapping("/upload")
   @ResponseStatus(HttpStatus.OK)
-  public Response uploadImage(
+  public PostImageResponse uploadImage(
       @RequestParam(name = "file") MultipartFile file, @RequestParam(name = "title") String title,
       @RequestParam(name = "content") String content, @RequestParam(name = "category") String category) {
     log.info("(uploadImage)fileName: {}", file.getOriginalFilename());
-    return Response.of(HttpStatus.CREATED.value(), service.uploadImage(getUserId(), PostCreateRequest.of(title, content, category), file));
+    return service.uploadImage(getUserId(), PostCreateRequest.of(title, content, category), file);
 
   }
 }

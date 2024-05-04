@@ -4,11 +4,13 @@ import static org.aibles.user_profile.constant.UserProfileApiConstant.BaseUrl.PO
 import static org.aibles.user_profile.constant.UserProfileApiConstant.ResourceConstant.COMMENT;
 import static org.aibles.user_profile.util.SecurityService.getUserId;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aibles.user_profile.dto.Response;
 import org.aibles.user_profile.dto.request.CommentCreateRequest;
 import org.aibles.user_profile.dto.request.CommentUpdateRequest;
+import org.aibles.user_profile.dto.response.CommentResponse;
 import org.aibles.user_profile.facade.CommentFacadeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -32,42 +34,42 @@ public class CommentController {
 
   @PostMapping("/{postId}" + COMMENT)
   @ResponseStatus(HttpStatus.OK)
-  public Response create(@Validated @PathVariable("postId") String postId, @Validated @RequestBody CommentCreateRequest request) {
+  public CommentResponse create(@Validated @PathVariable("postId") String postId, @Validated @RequestBody CommentCreateRequest request) {
     log.info("(create)userProfileId: {}, postId: {}, request: {}", getUserId(), postId, request);
-    return Response.of(HttpStatus.CREATED.value(), service.create(getUserId(), postId, request));
+    return service.create(getUserId(), postId, request);
   }
 
   @GetMapping("/{postId}" + COMMENT)
   @ResponseStatus(HttpStatus.OK)
-  public Response getAllByPostId(@Validated @PathVariable("postId") String postId) {
+  public List<CommentResponse> getAllByPostId(@Validated @PathVariable("postId") String postId) {
     log.info("(getAllByPostId)postId: {}", postId);
-    return Response.of(HttpStatus.OK.value(), service.getAllByPost(postId));
+    return service.getAllByPost(postId);
   }
 
   @GetMapping("/{postId}" + COMMENT + "/{parentId}")
   @ResponseStatus(HttpStatus.OK)
-  public Response getAllByParentId(@Validated @PathVariable("postId") String postId, @Validated @PathVariable("parentId") String parentId) {
+  public List<CommentResponse> getAllByParentId(@Validated @PathVariable("postId") String postId, @Validated @PathVariable("parentId") String parentId) {
     log.info("(getAllByParentId)postId: {}, parentId: {}", postId, parentId);
-    return Response.of(HttpStatus.OK.value(), service.getAllByParentId(postId));
+    return service.getAllByParentId(postId);
   }
 
   @DeleteMapping("/{postId}" + COMMENT + "/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public Response deleteById(@Validated @PathVariable("postId") String postId,
+  public String deleteById(@Validated @PathVariable("postId") String postId,
       @Validated @PathVariable("id") String id) {
     log.info("(deleteById)postId: {}, id: {}", postId, id);
     service.deleteById(getUserId(), postId, id);
-    return Response.of(HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(),"DELETE SUCCESS!!!");
+    return "DELETE SUCCESS!!!";
   }
 
 
   @PatchMapping("/{postId}" + COMMENT + "/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public Response updateContent(@Validated @PathVariable("postId") String postId,
+  public String updateContent(@Validated @PathVariable("postId") String postId,
       @Validated @PathVariable("id") String id,
       @Validated @RequestBody CommentUpdateRequest request) {
     log.info("(updateContent)userProfileId: {}, postId: {}, id: {}, request: {}", getUserId(), postId, id, request);
     service.updateContent(getUserId(), id, postId, request);
-    return Response.of(HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(),"UPDATE SUCCESS!!!");
+    return "UPDATE SUCCESS!!!";
   }
 }

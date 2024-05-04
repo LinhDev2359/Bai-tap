@@ -5,6 +5,7 @@ import static org.aibles.user_profile.constant.UserProfileApiConstant.ResourceCo
 import static org.aibles.user_profile.constant.UserProfileApiConstant.ResourceConstant.REACTION;
 import static org.aibles.user_profile.util.SecurityService.getUserId;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aibles.user_profile.dto.Response;
@@ -12,6 +13,7 @@ import org.aibles.user_profile.dto.request.ImageUpdateRequest;
 import org.aibles.user_profile.dto.request.PostCreateRequest;
 import org.aibles.user_profile.dto.request.ReactionCreateRequest;
 import org.aibles.user_profile.dto.request.ReactionUpdateRequest;
+import org.aibles.user_profile.dto.response.ReactionResponse;
 import org.aibles.user_profile.facade.ReactionFacadeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -35,38 +37,38 @@ public class ReactionController {
 
   @PostMapping("/{postId}" + REACTION)
   @ResponseStatus(HttpStatus.CREATED)
-  public Response create(@Validated @PathVariable("postId") String postId, @Validated @RequestBody ReactionCreateRequest request) {
+  public ReactionResponse create(@Validated @PathVariable("postId") String postId, @Validated @RequestBody ReactionCreateRequest request) {
     log.info("(create)userProfileId: {}, postId: {}, request: {}", getUserId(), postId, request);
     request.validateType();
-    return Response.of(HttpStatus.CREATED.value(), service.create(getUserId(), postId, request));
+    return service.create(getUserId(), postId, request);
   }
 
   @GetMapping("/{postId}" + REACTION)
   @ResponseStatus(HttpStatus.OK)
-  public Response getAll(@Validated @PathVariable("postId") String postId) {
+  public List<ReactionResponse> getAll(@Validated @PathVariable("postId") String postId) {
     log.info("(getAll)postId: {}", postId);
-    return Response.of(HttpStatus.OK.value(), service.getAll(postId));
+    return service.getAll(postId);
   }
 
   @DeleteMapping("/{postId}" + REACTION + "/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public Response deleteById(@Validated @PathVariable("postId") String postId,
+  public String deleteById(@Validated @PathVariable("postId") String postId,
       @Validated @PathVariable("id") String id) {
     log.info("(deleteById)postId: {}, id: {}", postId, id);
     service.deleteById(getUserId(), postId, id);
-    return Response.of(HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(),"DELETE SUCCESS!!!");
+    return "DELETE SUCCESS!!!";
   }
 
 
   @PatchMapping("/{postId}" + REACTION + "/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public Response updateType(@Validated @PathVariable("postId") String postId,
+  public String updateType(@Validated @PathVariable("postId") String postId,
       @Validated @PathVariable("id") String id,
       @Validated @RequestBody ReactionUpdateRequest request) {
     log.info("(updateType)userProfileId: {}, postId: {}, id: {}, request: {}", getUserId(), postId, id, request);
     request.validateType();
     service.updateType(getUserId(), id, postId, request);
-    return Response.of(HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(),"UPDATE SUCCESS!!!");
+    return "UPDATE SUCCESS!!!";
   }
 
 

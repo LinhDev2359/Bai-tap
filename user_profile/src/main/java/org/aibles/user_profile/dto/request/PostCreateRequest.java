@@ -1,6 +1,7 @@
 package org.aibles.user_profile.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import org.aibles.user_profile.entity.Post;
 
 public class PostCreateRequest {
 
@@ -33,5 +34,13 @@ public class PostCreateRequest {
 
   public void setCategory(String category) {
     this.category = category;
+  }
+
+  public static PostCreateRequest of(String title, String content, String category) {
+    PostCreateRequest post = new PostCreateRequest();
+    post.setTitle(title);
+    post.setContent(content);
+    post.setCategory(category);
+    return post;
   }
 }

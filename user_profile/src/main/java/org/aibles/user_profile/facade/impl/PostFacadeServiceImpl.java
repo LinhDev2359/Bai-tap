@@ -1,17 +1,25 @@
 package org.aibles.user_profile.facade.impl;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.aibles.user_profile.dto.request.ImageCreateRequest;
 import org.aibles.user_profile.dto.request.PostCreateRequest;
 import org.aibles.user_profile.dto.request.PostUpdateRequest;
+import org.aibles.user_profile.dto.response.PostImageResponse;
 import org.aibles.user_profile.dto.response.PostResponse;
 import org.aibles.user_profile.entity.Post;
+import org.aibles.user_profile.exception.BadRequestException;
 import org.aibles.user_profile.facade.PostFacadeService;
 import org.aibles.user_profile.service.ImageService;
 import org.aibles.user_profile.service.PostService;
 import org.aibles.user_profile.service.UserProfileService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -20,6 +28,9 @@ public class PostFacadeServiceImpl implements PostFacadeService {
   private final UserProfileService userProfileService;
   private final PostService postService;
   private final ImageService imageService;
+
+  @Value("${image.value}")
+  private Path fileStorageLocation;
 
   @Override
   @Transactional
@@ -82,6 +93,26 @@ public class PostFacadeServiceImpl implements PostFacadeService {
     var userProfile = userProfileService.getById(userProfileId);
     String name = userProfile.getFirstName().concat(" ").concat(userProfile.getLastName());
     return postService.sharePost(userProfileId, postId, request, name);
+  }
+
+  @Override
+  @Transactional
+  public PostImageResponse uploadImage(String userProfileId, PostCreateRequest request, MultipartFile file) {
+    log.info("(uploadImage)userProfileId: {}, request: {}", userProfileId, request);
+    var userProfile = userProfileService.getById(userProfileId);
+    String name = userProfile.getFirstName().concat(" ").concat(userProfile.getLastName());
+    var post = postService.create(userProfileId, request, name);
+    try {
+      Path targetLocation = fileStorageLocation.resolve(file.getOriginalFilename());
+      Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+      ImageCreateRequest imageCreateRequest = new ImageCreateRequest();
+      imageCreateRequest.setImageUrl(targetLocation.toString());
+      imageService.create(post.getId(), imageCreateRequest);
+      return PostImageResponse.from(Post.of(post), targetLocation.toString());
+    } catch (Exception ex) {
+      log.error("(uploadImage)exception : {} --> Bad request", ex.getClass().getSimpleName());
+      throw new BadRequestException();
+    }
   }
 
 }

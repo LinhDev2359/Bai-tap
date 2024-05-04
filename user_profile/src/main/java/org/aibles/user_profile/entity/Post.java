@@ -2,6 +2,7 @@ package org.aibles.user_profile.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import org.aibles.user_profile.dto.response.PostResponse;
 import org.aibles.user_profile.entity.base.BaseEntity;
 
 @Entity
@@ -104,6 +105,20 @@ public class Post extends BaseEntity {
     post.setParentId(parentId);
     post.setAuthorId(authorId);
     post.setUserProfileId(userProfileId);
+    return post;
+  }
+  public static Post of(PostResponse response) {
+    Post post = new Post();
+    post.setId(response.getId());
+    post.setTitle(response.getTitle());
+    post.setContent(response.getContent());
+    post.setAuthor(response.getAuthor());
+    post.setCategory(response.getCategory());
+    post.setParentId(response.getParentId());
+    post.setAuthorId(response.getAuthorId());
+    post.setUserProfileId(response.getUserProfileId());
+    post.setCreatedAt(response.getCreatedAt());
+    post.setUpdatedAt(response.getUpdatedAt());
     return post;
   }
 }

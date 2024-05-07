@@ -137,4 +137,20 @@ public class UserProfileServiceImpl implements UserProfileService {
       throw new EmailNotFoundException(email);
     }
   }
+
+  @Override
+  @Transactional
+  public UserProfile findByEmail(String email) {
+    log.info("(findByEmail)email: {}", email);
+    return repository.findByEmail(email);
+  }
+
+  @Override
+  public UserProfile resetPassword(String email, String password) {
+    log.info("(resetPassword)email: {}, password: {}", email, password);
+    var userProfile = repository
+        .findByEmail(email);
+    userProfile.setPassword(password);
+    return userProfile;
+  }
 }

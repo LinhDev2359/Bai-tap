@@ -5,6 +5,8 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aibles.user_profile.dto.Response;
+import org.aibles.user_profile.dto.response.PostResponse;
+import org.aibles.user_profile.entity.Post;
 import org.aibles.user_profile.service.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +23,8 @@ public class SearchController {
   private final PostService postService;
 
   @GetMapping("/posts")
-  public Response searchPostsParam(@RequestParam Map<String, String> paramsSearch) {
+  public List<Post> searchPostsParam(@RequestParam Map<String, String> paramsSearch) {
     log.info("(searchPosts)paramsSearch: {}", paramsSearch);
-    return Response.of(HttpStatus.OK.value(), postService.findByCriteria(paramsSearch));
+    return postService.findByCriteria(paramsSearch);
   }
 }

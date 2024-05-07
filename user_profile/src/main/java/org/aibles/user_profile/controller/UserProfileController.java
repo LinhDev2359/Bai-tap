@@ -3,10 +3,12 @@ package org.aibles.user_profile.controller;
 import static org.aibles.user_profile.constant.UserProfileApiConstant.BaseUrl.USER_PROFILE_URL;
 import static org.aibles.user_profile.util.SecurityService.getUserId;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aibles.user_profile.dto.Response;
 import org.aibles.user_profile.dto.request.UserProfileUpdateRequest;
+import org.aibles.user_profile.dto.response.UserProfileResponse;
 import org.aibles.user_profile.facade.UserProfileFacadeService;
 import org.aibles.user_profile.service.UserProfileService;
 import org.springframework.http.HttpStatus;
@@ -31,31 +33,31 @@ public class UserProfileController {
 
   @GetMapping("/self")
   @ResponseStatus(HttpStatus.OK)
-  public Response getById() {
+  public UserProfileResponse getById() {
     log.info("(getById)id: {}", getUserId());
-    return Response.of(HttpStatus.OK.value(), service.getById(getUserId()));
+    return service.getById(getUserId());
   }
 
   @GetMapping()
   @ResponseStatus(HttpStatus.OK)
-  public Response getAll() {
+  public List<UserProfileResponse> getAll() {
     log.info("(getAll)");
-    return Response.of(HttpStatus.OK.value(), service.getAll());
+    return service.getAll();
   }
 
   @DeleteMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public Response deleteById(@Validated @PathVariable("id") String id) {
+  public String deleteById(@Validated @PathVariable("id") String id) {
     log.info("(deleteById)id: {}", id);
     userProfileFacadeService.deleteById(id);
-    return Response.of(HttpStatus.OK.value(), "DELETE SUCCESS!!!");
+    return "DELETE SUCCESS!!!";
   }
 
 
   @PatchMapping("/self")
   @ResponseStatus(HttpStatus.OK)
-  public Response updateById(@Validated @RequestBody UserProfileUpdateRequest request) {
+  public UserProfileResponse updateById(@Validated @RequestBody UserProfileUpdateRequest request) {
     log.info("(updateById)id: {}, request: {}", getUserId(), request);
-    return Response.of(HttpStatus.OK.value(), service.updateById(getUserId(), request));
+    return service.updateById(getUserId(), request);
   }
 }

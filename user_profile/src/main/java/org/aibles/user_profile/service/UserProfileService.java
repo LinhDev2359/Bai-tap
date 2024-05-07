@@ -18,4 +18,6 @@ public interface UserProfileService {
   UserProfile findByUsername(String username);
   UserProfile findById(String id);
   void validateEmail(String email);
+  UserProfile findByEmail(String email);
+  UserProfile resetPassword(String email, String password);
 }

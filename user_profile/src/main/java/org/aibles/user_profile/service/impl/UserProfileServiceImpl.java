@@ -1,10 +1,12 @@
 package org.aibles.user_profile.service.impl;
 
 import java.util.List;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aibles.user_profile.constant.Gender;
 import org.aibles.user_profile.constant.Role;
+import org.aibles.user_profile.dto.request.ChangePasswordRequest;
 import org.aibles.user_profile.dto.request.RegisterRequest;
 import org.aibles.user_profile.dto.request.UserProfileUpdateRequest;
 import org.aibles.user_profile.dto.response.UserProfileResponse;
@@ -152,5 +154,18 @@ public class UserProfileServiceImpl implements UserProfileService {
         .findByEmail(email);
     userProfile.setPassword(password);
     return userProfile;
+  }
+
+  @Override
+  @Transactional
+  public void changePassword(ChangePasswordRequest request, String userProfileId) {
+    log.info(
+        "(changePassword)request: {}, userProfileId: {}", request, userProfileId);
+    var userProfile = repository
+        .findById(userProfileId)
+        .orElseThrow(() -> {
+          throw new UserProfileIdNotFoundException(userProfileId);
+        });
+    userProfile.setPassword(request.getNewPassword());
   }
 }

@@ -12,6 +12,7 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.aibles.user_profile.dto.request.ChangePasswordRequest;
 import org.aibles.user_profile.dto.request.ForgotPasswordRequest;
 import org.aibles.user_profile.dto.request.ResetPasswordRequest;
 import org.aibles.user_profile.dto.request.VerifyOtpRequest;
@@ -176,6 +177,14 @@ public class AuthFacadeServiceImpl implements AuthFacadeService {
     }
     validatePassword(request.getPassword(), request.getConfirmPassword());
     userProfileService.resetPassword(request.getEmail(), request.getPassword());
+  }
+
+  @Override
+  @Transactional
+  public void changePassword(ChangePasswordRequest request, String userProfileId) {
+    log.info("(changePassword)request: {}, userProfileId: {}", request, userProfileId);
+    validatePassword(request.getNewPassword(), request.getConfirmNewPassword());
+    userProfileService.changePassword(request, userProfileId);
   }
 
   private void storeTokens(String userId, String accessToken, String refreshToken) {

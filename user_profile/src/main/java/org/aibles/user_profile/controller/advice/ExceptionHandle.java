@@ -27,7 +27,7 @@ public class ExceptionHandle {
   }
 
   @ExceptionHandler(value = {MethodArgumentNotValidException.class})
-  public ExceptionResponse validationExceptionHandle(MethodArgumentNotValidException exception) {
+  public ResponseEntity<ExceptionResponse> validationExceptionHandle(MethodArgumentNotValidException exception) {
     log.info("(Validation)");
     String errorMessage = exception.getBindingResult().getFieldErrors().stream()
         .map(fieldError -> fieldError.getField() + ": " + fieldError.getDefaultMessage())
@@ -38,6 +38,6 @@ public class ExceptionHandle {
     exceptionResponse.setMessage(errorMessage);
     exceptionResponse.setTimestamp(Instant.now());
 
-    return exceptionResponse;
+    return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
   }
 }

@@ -1,12 +1,14 @@
 package org.aibles.user_profile.controller;
 
 import static org.aibles.user_profile.constant.UserProfileApiConstant.BaseUrl.AUTH_URL;
+import static org.aibles.user_profile.util.SecurityService.getUserId;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aibles.user_profile.dto.Response;
 import org.aibles.user_profile.dto.request.ActiveAccountRequest;
+import org.aibles.user_profile.dto.request.ChangePasswordRequest;
 import org.aibles.user_profile.dto.request.ForgotPasswordRequest;
 import org.aibles.user_profile.dto.request.LoginRequest;
 import org.aibles.user_profile.dto.request.RefreshTokenRequest;
@@ -90,6 +92,14 @@ public class AuthController {
     log.info("(resetPassword) request: {}", request);
     authFacadeService.resetPassword(request);
     return "Reset password successfully";
+  }
+
+  @PostMapping("/change-password")
+  @ResponseStatus(HttpStatus.OK)
+  public String changePassword(@Validated @RequestBody ChangePasswordRequest request) {
+    log.info("(changePassword) request: {}", request);
+    authFacadeService.changePassword(request, getUserId());
+    return "Change password successfully";
   }
 
 }

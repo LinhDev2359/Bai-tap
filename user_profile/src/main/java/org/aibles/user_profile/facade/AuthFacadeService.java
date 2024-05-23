@@ -1,5 +1,6 @@
 package org.aibles.user_profile.facade;
 
+import org.aibles.user_profile.dto.request.ChangePasswordRequest;
 import org.aibles.user_profile.dto.request.ForgotPasswordRequest;
 import org.aibles.user_profile.dto.request.ResetPasswordRequest;
 import org.aibles.user_profile.dto.request.VerifyOtpRequest;
@@ -19,4 +20,5 @@ public interface AuthFacadeService {
   void forgotPassword(ForgotPasswordRequest request);
   AuthVerifyOtpResponse verifyOtp(VerifyOtpRequest request);
   void resetPassword(ResetPasswordRequest request);
+  void changePassword(ChangePasswordRequest request, String userProfileId);
 }

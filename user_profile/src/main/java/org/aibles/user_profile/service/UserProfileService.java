@@ -1,6 +1,7 @@
 package org.aibles.user_profile.service;
 
 import java.util.List;
+import org.aibles.user_profile.dto.request.ChangePasswordRequest;
 import org.aibles.user_profile.dto.request.RegisterRequest;
 import org.aibles.user_profile.dto.request.UserProfileCreateRequest;
 import org.aibles.user_profile.dto.request.UserProfileUpdateRequest;
@@ -20,4 +21,5 @@ public interface UserProfileService {
   void validateEmail(String email);
   UserProfile findByEmail(String email);
   UserProfile resetPassword(String email, String password);
+  void changePassword(ChangePasswordRequest request, String userProfileId);
 }

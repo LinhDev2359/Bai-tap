@@ -8,6 +8,7 @@ import org.aibles.user_profile.exception.response.ExceptionResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -39,5 +40,17 @@ public class ExceptionHandle {
     exceptionResponse.setTimestamp(Instant.now());
 
     return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+  }
+
+  @ExceptionHandler(MissingPathVariableException.class)
+  public ResponseEntity<ExceptionResponse> handleMissingPathVariable(MissingPathVariableException exception) {
+    log.info("(MissingPathVariable)exception: {}", exception.getVariableName());
+
+    ExceptionResponse exceptionResponse = new ExceptionResponse();
+    exceptionResponse.setError("Path Variable Missing");
+    exceptionResponse.setMessage("Path variable '" + exception.getVariableName() + "' is missing.");
+    exceptionResponse.setTimestamp(Instant.now());
+
+    return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
   }
 }

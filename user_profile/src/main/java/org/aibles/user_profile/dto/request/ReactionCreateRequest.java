@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.extern.slf4j.Slf4j;
 import org.aibles.user_profile.constant.TypeReaction;
 import org.aibles.user_profile.exception.GenderInvalidBaseException;
+import org.aibles.user_profile.exception.TypeInvalidBaseException;
 
 @Slf4j
 public class ReactionCreateRequest {
@@ -32,7 +33,7 @@ public class ReactionCreateRequest {
 
     if (!isValid) {
       log.error("(validateType)type: {} invalid", this.type);
-      throw new GenderInvalidBaseException(type);
+      throw new TypeInvalidBaseException(type);
     }
   }
 }

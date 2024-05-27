@@ -36,8 +36,9 @@ public class CommentFacadeServiceImpl implements CommentFacadeService {
 
   @Override
   @Transactional
-  public List<CommentResponse> getAllByParentId(String parentId) {
-    log.info("(getAllByParentId)parentId: {}", parentId);
+  public List<CommentResponse> getAllByParentId(String postId, String parentId) {
+    log.info("(getAllByParentId)postId: {}, parentId: {}", postId, parentId);
+    postService.validateExist(postId);
     return commentService.getAllByParentId(parentId);
   }
 

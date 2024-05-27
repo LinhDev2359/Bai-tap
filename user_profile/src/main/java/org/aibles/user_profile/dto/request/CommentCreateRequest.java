@@ -1,7 +1,10 @@
 package org.aibles.user_profile.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class CommentCreateRequest {
 
+  @NotBlank(message = "Content can't be left blank")
   private String content;
   private String parentId;
 

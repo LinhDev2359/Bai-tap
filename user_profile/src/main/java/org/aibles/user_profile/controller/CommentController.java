@@ -33,7 +33,7 @@ public class CommentController {
   private final CommentFacadeService service;
 
   @PostMapping("/{postId}" + COMMENT)
-  @ResponseStatus(HttpStatus.OK)
+  @ResponseStatus(HttpStatus.CREATED)
   public CommentResponse create(@Validated @PathVariable("postId") String postId, @Validated @RequestBody CommentCreateRequest request) {
     log.info("(create)userProfileId: {}, postId: {}, request: {}", getUserId(), postId, request);
     return service.create(getUserId(), postId, request);
@@ -50,7 +50,7 @@ public class CommentController {
   @ResponseStatus(HttpStatus.OK)
   public List<CommentResponse> getAllByParentId(@Validated @PathVariable("postId") String postId, @Validated @PathVariable("parentId") String parentId) {
     log.info("(getAllByParentId)postId: {}, parentId: {}", postId, parentId);
-    return service.getAllByParentId(postId);
+    return service.getAllByParentId(postId, parentId);
   }
 
   @DeleteMapping("/{postId}" + COMMENT + "/{id}")

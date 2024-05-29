@@ -9,7 +9,7 @@ public interface CommentFacadeService {
 
   CommentResponse create(String userProfileId, String postId, CommentCreateRequest request);
   List<CommentResponse> getAllByPost(String postId);
-  List<CommentResponse> getAllByParentId(String parentId);
+  List<CommentResponse> getAllByParentId(String postId, String parentId);
   void updateContent(String userProfileId, String postId, String commentId, CommentUpdateRequest request);
   void deleteById(String userProfileId, String postId, String commentId);
 

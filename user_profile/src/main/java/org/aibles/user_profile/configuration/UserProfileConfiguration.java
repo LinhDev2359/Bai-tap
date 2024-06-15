@@ -34,6 +34,7 @@ import org.aibles.user_profile.service.impl.PostServiceImpl;
 import org.aibles.user_profile.service.impl.ReactionServiceImpl;
 import org.aibles.user_profile.service.impl.UserProfileServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -95,8 +96,8 @@ public class UserProfileConfiguration {
   }
 
   @Bean
-  public AuthFacadeService authFacadeService(UserProfileService userProfileService, AuthTokenService authTokenService, OtpService otpService, EmailService emailService) {
-    return new AuthFacadeServiceImpl(userProfileService, authTokenService, accessTokenLifeTime, refreshTokenLifeTime, otpService, emailService);
+  public AuthFacadeService authFacadeService(UserProfileService userProfileService, AuthTokenService authTokenService, OtpService otpService, EmailService emailService, ApplicationEventPublisher eventPublisher) {
+    return new AuthFacadeServiceImpl(userProfileService, authTokenService, accessTokenLifeTime, refreshTokenLifeTime, otpService, emailService, eventPublisher);
   }
 
   @Bean

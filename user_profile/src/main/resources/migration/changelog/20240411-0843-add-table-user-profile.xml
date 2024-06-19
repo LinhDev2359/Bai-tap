@@ -176,4 +176,18 @@
       referencedTableName="post" referencedColumnNames="id"/>
   </changeSet>
 
+  <changeSet id="20240619-0836-add-table-failed-event-send-mail-otp" author="YaLynk" >
+    <createTable tableName="failed_event">
+      <column name="id" type="varchar(255)">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="email" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="otp" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
 </databaseChangeLog>

@@ -24,6 +24,7 @@ import org.aibles.user_profile.dto.response.AuthVerifyOtpResponse;
 import org.aibles.user_profile.dto.response.AuthInActiveAccountResponse;
 import org.aibles.user_profile.dto.response.LoginResponse;
 import org.aibles.user_profile.entity.UserProfile;
+import org.aibles.user_profile.event.SendEmailTemplateEvent;
 import org.aibles.user_profile.exception.InvalidRefreshTokenException;
 import org.aibles.user_profile.exception.OTPInvalidException;
 import org.aibles.user_profile.exception.PasswordConfirmNotMatchException;
@@ -36,6 +37,7 @@ import org.aibles.user_profile.service.OtpService;
 import org.aibles.user_profile.service.UserProfileService;
 import org.aibles.user_profile.util.CryptUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,6 +55,7 @@ public class AuthFacadeServiceImpl implements AuthFacadeService {
   private final Long refreshTokenLifeTime;
   private final OtpService otpService;
   private final EmailService emailService;
+  private final ApplicationEventPublisher eventPublisher;
 
   @Override
   public void activeAccount(String email, String otp) {
@@ -77,8 +80,9 @@ public class AuthFacadeServiceImpl implements AuthFacadeService {
     var redisKey = request.getEmail() + "_" + OTP + "_" + ACTIVE_ACCOUNT;
 
     redisTemplate.opsForValue().set(redisKey, otp, OTP_REGISTER_TTL_MINUTES, TimeUnit.MINUTES);
+    eventPublisher.publishEvent(new SendEmailTemplateEvent(this, request.getEmail(), otp));
     String subject = "Send OTP for Active account";
-    createActiveEmail(subject, request.getEmail(), otp);
+   // createActiveEmail(subject, request.getEmail(), otp);
   }
 
   @Override

@@ -15,6 +15,7 @@ import org.aibles.user_profile.facade.impl.PostFacadeServiceImpl;
 import org.aibles.user_profile.facade.impl.ReactionFacadeServiceImpl;
 import org.aibles.user_profile.facade.impl.UserProfileFacadeServiceImpl;
 import org.aibles.user_profile.repository.CommentRepository;
+import org.aibles.user_profile.repository.EventFailedRepository;
 import org.aibles.user_profile.repository.ImageRepository;
 import org.aibles.user_profile.repository.PostRepository;
 import org.aibles.user_profile.repository.ReactionRepository;
@@ -22,6 +23,7 @@ import org.aibles.user_profile.repository.UserProfileRepository;
 import org.aibles.user_profile.service.AuthTokenService;
 import org.aibles.user_profile.service.CommentService;
 import org.aibles.user_profile.service.EmailService;
+import org.aibles.user_profile.service.EventFailedService;
 import org.aibles.user_profile.service.ImageService;
 import org.aibles.user_profile.service.OtpService;
 import org.aibles.user_profile.service.PostService;
@@ -29,6 +31,7 @@ import org.aibles.user_profile.service.ReactionService;
 import org.aibles.user_profile.service.UserProfileService;
 import org.aibles.user_profile.service.impl.AuthTokenServiceImpl;
 import org.aibles.user_profile.service.impl.CommentServiceImpl;
+import org.aibles.user_profile.service.impl.EventFailedServiceImpl;
 import org.aibles.user_profile.service.impl.ImageServiceImpl;
 import org.aibles.user_profile.service.impl.PostServiceImpl;
 import org.aibles.user_profile.service.impl.ReactionServiceImpl;
@@ -118,5 +121,10 @@ public class UserProfileConfiguration {
   @Bean
   public CommentFacadeService commentFacadeService(CommentService commentService, PostService postService) {
     return new CommentFacadeServiceImpl(commentService, postService);
+  }
+
+  @Bean
+  public EventFailedService eventFailedService(EventFailedRepository eventFailedRepository) {
+    return new EventFailedServiceImpl(eventFailedRepository);
   }
 }

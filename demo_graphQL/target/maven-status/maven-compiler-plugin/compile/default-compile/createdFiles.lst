@@ -1,0 +1,10 @@
+org\aibles\demo_graphQL\dto\request\PromotionRequest.class
+org\aibles\demo_graphQL\repository\PromotionRepository.class
+org\aibles\demo_graphQL\dto\response\PromotionResponse.class
+org\aibles\demo_graphQL\entity\PromotionEntity.class
+org\aibles\demo_graphQL\configuration\PromorionConfiguration.class
+org\aibles\demo_graphQL\service\PromotionResolver.class
+org\aibles\demo_graphQL\DemoGraphQlApplication.class
+org\aibles\demo_graphQL\service\impl\PromotionServiceImpl.class
+org\aibles\demo_graphQL\service\PromotionService.class
+org\aibles\demo_graphQL\service\impl\PromotionResolverImpl.class
